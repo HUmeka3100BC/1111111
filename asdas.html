@@ -1,0 +1,76 @@
+w<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Checklist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .requirement {
+            margin: 10px 0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Checklist</h1>
+    <label for="company">Select Company:</label>
+    <select id="company">
+        <option value="">--Select--</option>
+        <option value="companyA">Company A</option>
+        <option value="companyB">Company B</option>
+    </select>
+
+    <label for="ahj">Select AHJ:</label>
+    <select id="ahj">
+        <option value="">--Select--</option>
+        <option value="ahjX">AHJ X</option>
+        <option value="ahjY">AHJ Y</option>
+    </select>
+
+    <label for="utility">Select Utility:</label>
+    <select id="utility">
+        <option value="">--Select--</option>
+        <option value="utility1">Utility 1</option>
+        <option value="utility2">Utility 2</option>
+    </select>
+
+    <div id="requirements">
+        <div class="requirement hidden" data-company="companyA" data-ahj="ahjX" data-utility="utility1">
+            <input type="checkbox" id="req1">
+            <label for="req1">Requirement 1 for Company A, AHJ X, Utility 1</label>
+        </div>
+        <div class="requirement hidden" data-company="companyB" data-ahj="ahjY" data-utility="utility2">
+            <input type="checkbox" id="req2">
+            <label for="req2">Requirement 2 for Company B, AHJ Y, Utility 2</label>
+        </div>
+    </div>
+
+    <script>
+        const companyDropdown = document.getElementById("company");
+        const ahjDropdown = document.getElementById("ahj");
+        const utilityDropdown = document.getElementById("utility");
+        const requirements = document.querySelectorAll(".requirement");
+
+        function updateRequirements() {
+            const company = companyDropdown.value;
+            const ahj = ahjDropdown.value;
+            const utility = utilityDropdown.value;
+
+            requirements.forEach(req => {
+                const matches = req.dataset.company === company && req.dataset.ahj === ahj && req.dataset.utility === utility;
+                req.classList.toggle("hidden", !matches);
+            });
+        }
+
+        companyDropdown.addEventListener("change", updateRequirements);
+        ahjDropdown.addEventListener("change", updateRequirements);
+        utilityDropdown.addEventListener("change", updateRequirements);
+    </script>
+</body>
+</html>
