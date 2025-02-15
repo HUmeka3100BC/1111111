@@ -9,37 +9,43 @@
 <body>
     <div class="container">
         <div class="dropdowns">
-            <select id="stateDropdown" class="blue">
-                <option value="">Select State</option>
-            </select>
-            <select id="companyDropdown" class="green">
-                <option value="">Select Company</option>
-            </select>
-            <select id="ahjDropdown" class="yellow">
-                <option value="">Select AHJ</option>
-            </select>
-            <select id="utilityDropdown" class="red">
-                <option value="">Select Utility</option>
-            </select>
-            <select id="inverterDropdown" class="orange">
-                <option value="">Select Inverter</option>
-            </select>
-            <select id="batteryDropdown" class="violet">
-                <option value="">Select Battery</option>
-            </select>
-            <select id="checklistDropdown" class="white">
+            <select id="checklistDropdown" class="dropdown white">
                 <option value="">Select Checklist</option>
                 <option value="revision">Revision Checklist</option>
                 <option value="ftd">FTD Checklist</option>
             </select>
+
+            <select id="stateDropdown" class="dropdown blue">
+                <option value="">Select State</option>
+            </select>
+
+            <select id="companyDropdown" class="dropdown green">
+                <option value="">Select Company</option>
+            </select>
+
+            <select id="ahjDropdown" class="dropdown yellow">
+                <option value="">Select AHJ</option>
+            </select>
+
+            <select id="utilityDropdown" class="dropdown red">
+                <option value="">Select Utility</option>
+            </select>
+
+            <select id="inverterDropdown" class="dropdown orange">
+                <option value="">Select Inverter</option>
+            </select>
+
+            <select id="batteryDropdown" class="dropdown violet">
+                <option value="">Select Battery</option>
+            </select>
         </div>
-        
-        <button id="resetButton">Reset</button>
 
         <div id="checklistContainer">
             <h2>Checklist</h2>
-            <ul id="checklist"></ul>
+            <ul id="checklistItems"></ul>
         </div>
+
+        <button id="resetButton">Reset</button>
     </div>
 
     <script src="script.js"></script>
