@@ -1,0 +1,67 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+.dropdown-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.dropdown {
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    border: none;
+}
+
+.green { background-color: #2e7d32; color: white; }
+.blue { background-color: #1565c0; color: white; }
+.yellow { background-color: #fbc02d; color: black; }
+.red { background-color: #d32f2f; color: white; }
+.orange { background-color: #ef6c00; color: white; }
+.violet { background-color: #8e24aa; color: white; }
+
+.checklist h3 {
+    text-align: left;
+    border-bottom: 2px solid #ffffff;
+    margin-top: 20px;
+    padding-bottom: 5px;
+}
+
+.checklist ul {
+    list-style: none;
+    padding: 0;
+}
+
+.checklist li {
+    text-align: left;
+    margin: 5px 0;
+}
+
+.reset-btn {
+    padding: 10px;
+    background-color: #b71c1c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.reset-btn:hover {
+    background-color: #d32f2f;
+}
