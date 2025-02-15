@@ -1,0 +1,23 @@
+{
+    "companies": ["THRIVE", "SAMEDAY", "NORTH VALLEY", "CITADEL"],
+    "states": ["California", "Texas", "New York"],
+    "ahjs": ["FRESNO", "UNION CITY"],
+    "utilities": ["SCE", "PG&E"],
+    "inverters": ["TESLA", "ENPHASE", "SOLAREDGE", "APS"],
+    "batteries": ["POWERWALL 3", "ENPHASE", "SOLAREDGE"],
+    "checklist": {
+        "COMPANY BEST PRACTICES": [],
+        "MODEL SPACE": ["FILL OUT DWG PROPS UTC", "AZIMUTH UTC", "DRAW HOUSE", "FIRE SETBACKS"],
+        "PV4": ["WIRE TABLE", "GROUNDING LABEL"],
+        "PV3": ["ATTACH THE CORRECT ATTACHMENT DWG"]
+    },
+    "ahjNotes": {
+        "FRESNO": {
+            "PV4": "Show PG&E note if needed",
+            "PV3": "Testing lang"
+        },
+        "UNION CITY": {
+            "PV4": "ok ok ok"
+        }
+    }
+}

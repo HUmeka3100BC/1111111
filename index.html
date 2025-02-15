@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        select {
+            padding: 5px;
+            margin: 5px;
+            border: none;
+            font-weight: bold;
+        }
+        #company { background-color: green; color: white; }
+        #state { background-color: blue; color: white; }
+        #ahj { background-color: yellow; color: black; }
+        #utility { background-color: red; color: white; }
+        #inverter { background-color: orange; color: white; }
+        #battery { background-color: violet; color: white; }
+        .checklist {
+            margin-top: 20px;
+            background: #292929;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .category {
+            font-size: 18px;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+        .item {
+            margin-left: 20px;
+        }
+        .reset-btn {
+            background: red;
+            color: white;
+            padding: 10px;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Checklist</h2>
+    
+    <select id="company" onchange="updateChecklist()">
+        <option value="">Select Company</option>
+    </select>
+    <select id="state" onchange="updateChecklist()">
+        <option value="">Select State</option>
+    </select>
+    <select id="ahj" onchange="updateChecklist()">
+        <option value="">Select AHJ</option>
+    </select>
+    <select id="utility" onchange="updateChecklist()">
+        <option value="">Select Utility</option>
+    </select>
+    <select id="inverter" onchange="updateChecklist()">
+        <option value="">Select Inverter</option>
+    </select>
+    <select id="battery" onchange="updateChecklist()">
+        <option value="">Select Battery</option>
+    </select>
+    
+    <div id="checklist" class="checklist"></div>
+    <button class="reset-btn" onclick="resetForm()">Reset</button>
+    
+    <script>
+        let checklistData = {};
+        
+        async function loadChecklist() {
+            const response = await fetch('data.json');
+            checklistData = await response.json();
+            populateDropdowns();
+        }
+        
+        function populateDropdowns() {
+            populateOptions('company', checklistData.companies);
+            populateOptions('state', checklistData.states);
+            populateOptions('ahj', checklistData.ahjs);
+            populateOptions('utility', checklistData.utilities);
+            populateOptions('inverter', checklistData.inverters);
+            populateOptions('battery', checklistData.batteries);
+        }
+        
+        function populateOptions(id, options) {
+            const dropdown = document.getElementById(id);
+            options.forEach(option => {
+                let opt = document.createElement("option");
+                opt.value = option;
+                opt.innerText = option;
+                dropdown.appendChild(opt);
+            });
+        }
+        
+        function updateChecklist() {
+            let selectedAHJ = document.getElementById("ahj").value;
+            let checklistDiv = document.getElementById("checklist");
+            checklistDiv.innerHTML = "";
+            
+            Object.keys(checklistData.checklist).forEach(category => {
+                let section = document.createElement("div");
+                section.innerHTML = `<div class='category'>${category}</div>`;
+                checklistData.checklist[category].forEach(item => {
+                    let itemText = item;
+                    if (checklistData.ahjNotes[selectedAHJ] && checklistData.ahjNotes[selectedAHJ][category]) {
+                        itemText = checklistData.ahjNotes[selectedAHJ][category];
+                    }
+                    section.innerHTML += `<div class='item'><input type='checkbox'> ${itemText}</div>`;
+                });
+                checklistDiv.appendChild(section);
+            });
+        }
+        
+        function resetForm() {
+            document.getElementById("company").value = "";
+            document.getElementById("state").value = "";
+            document.getElementById("ahj").value = "";
+            document.getElementById("utility").value = "";
+            document.getElementById("inverter").value = "";
+            document.getElementById("battery").value = "";
+            document.getElementById("checklist").innerHTML = "";
+        }
+        
+        loadChecklist();
+    </script>
+</body>
+</html>
