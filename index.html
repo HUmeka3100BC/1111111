@@ -51,6 +51,7 @@
     <select id="state"><option value="">Select State</option></select>
   </div>
   <div class="checklist-container">
+    <div id="companyBestPractices"></div>
     <div id="modelSpace"></div>
     <div id="pv0"></div>
     <div id="pv1"></div>
@@ -109,7 +110,7 @@
     }
 
     function updateChecklist(requirements) {
-      const sections = ["MODEL SPACE", "PV0", "PV1", "PV2", "PVA", "PV3", "PV4", "PV5", "POST CAD"];
+      const sections = ["COMPANY BEST PRACTICES", "MODEL SPACE", "PV0", "PV1", "PV2", "PVA", "PV3", "PV4", "PV5", "POST CAD"];
       sections.forEach(section => {
         const div = document.getElementById(section.replace(" ", "").toLowerCase());
         div.innerHTML = '';
