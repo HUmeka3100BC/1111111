@@ -1,30 +1,28 @@
 {
     "California": {
         "companies": ["THRIVE", "CITADEL"],
-        "ahj": ["FRESNO", "UNION CITY"],
-        "utility": ["PG&E", "SCE"],
-        "inverter": ["ENPHASE", "SOLAREDGE", "TESLA"],
-        "battery": ["ENPHASE", "SOLAREDGE", "POWERWALL 3"],
-        "notes": {
+        "ahj": {
             "FRESNO": {
-                "pv4": "show PG&E note if needed",
-                "pv3": "testing lang"
+                "utility": ["PG&E"],
+                "notes": {
+                    "pv3": "testing lang",
+                    "pv4": "show PG&E note if needed"
+                }
             },
             "UNION CITY": {
-                "pv4": "ok ok ok"
+                "utility": ["SCE"],
+                "notes": {
+                    "pv4": "ok ok ok"
+                }
             }
         }
     },
     "Florida": {
         "companies": ["THRIVE"],
-        "ahj": ["FRESNO"],
-        "utility": ["PG&E"],
-        "inverter": ["ENPHASE"],
-        "battery": ["POWERWALL 3"],
-        "notes": {
-            "FRESNO": {
-                "pv4": "show PG&E note if needed",
-                "pv3": "testing lang"
+        "ahj": {
+            "MIAMI": {
+                "utility": ["FPL"],
+                "notes": {}
             }
         }
     }
