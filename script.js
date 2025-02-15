@@ -1,56 +1,75 @@
-body {
-    background-color: #121212;
-    color: white;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-}
+document.addEventListener("DOMContentLoaded", async function () {
+    const stateDropdown = document.getElementById("stateDropdown");
+    const companyDropdown = document.getElementById("companyDropdown");
+    const ahjDropdown = document.getElementById("ahjDropdown");
+    const utilityDropdown = document.getElementById("utilityDropdown");
+    const checklistDropdown = document.getElementById("checklistDropdown");
+    const checklistContainer = document.getElementById("checklistItems");
+    const resetButton = document.getElementById("resetButton");
 
-.container {
-    max-width: 800px;
-    margin: auto;
-}
+    let data = await fetch("data.json").then(res => res.json());
 
-.dropdowns {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
+    // Populate states dropdown
+    Object.keys(data.states).forEach(state => {
+        let option = new Option(state, state);
+        stateDropdown.add(option);
+    });
 
-.dropdown {
-    padding: 8px;
-    border-radius: 5px;
-}
+    function updateDropdown(dropdown, options) {
+        dropdown.innerHTML = '<option value="">Select</option>';
+        options.forEach(opt => dropdown.add(new Option(opt, opt)));
+    }
 
-.white { background-color: #ffffff; color: black; }
-.blue { background-color: #1E90FF; color: white; }
-.green { background-color: #32CD32; color: white; }
-.yellow { background-color: #FFD700; color: black; }
-.red { background-color: #FF4500; color: white; }
-.orange { background-color: #FFA500; color: black; }
-.violet { background-color: #8A2BE2; color: white; }
+    stateDropdown.addEventListener("change", function () {
+        let selectedState = this.value;
+        let stateData = data.states[selectedState] || { companies: [], ahjs: [], utilities: [] };
+        updateDropdown(companyDropdown, stateData.companies);
+        updateDropdown(ahjDropdown, stateData.ahjs);
+        updateDropdown(utilityDropdown, stateData.utilities);
+    });
 
-h2 {
-    border-bottom: 2px solid white;
-    padding-bottom: 5px;
-}
+    function updateChecklist() {
+        checklistContainer.innerHTML = "";
+        let checklistType = checklistDropdown.value;
+        let selectedAHJ = ahjDropdown.value;
+        let selectedCompany = companyDropdown.value;
 
-ul {
-    list-style: none;
-    padding: 0;
-}
+        if (checklistType === "ftd") {
+            Object.entries(data.ftdChecklist).forEach(([section, items]) => {
+                let sectionEl = document.createElement("li");
+                sectionEl.textContent = section + ":";
+                checklistContainer.appendChild(sectionEl);
+                items.forEach(item => {
+                    let itemEl = document.createElement("li");
+                    let checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    itemEl.appendChild(checkbox);
+                    itemEl.append(" " + item);
+                    checklistContainer.appendChild(itemEl);
+                });
+            });
+        }
 
-li {
-    padding: 5px;
-}
+        if (selectedAHJ && data.ahjData[selectedAHJ]) {
+            Object.entries(data.ahjData[selectedAHJ]).forEach(([section, text]) => {
+                let itemEl = document.createElement("li");
+                itemEl.innerHTML = `<span class="yellow-text">${text}</span>`;
+                checklistContainer.appendChild(itemEl);
+            });
+        }
 
-.yellow-text { color: #FFD700; }
-.green-text { color: #32CD32; }
-.red-text { color: #FF4500; }
+        if (selectedCompany && data.companyData[selectedCompany]) {
+            let itemEl = document.createElement("li");
+            itemEl.innerHTML = `<span class="green-text">${data.companyData[selectedCompany]}</span>`;
+            checklistContainer.appendChild(itemEl);
+        }
+    }
 
-button {
-    background-color: #FF4500;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
+    checklistDropdown.addEventListener("change", updateChecklist);
+    ahjDropdown.addEventListener("change", updateChecklist);
+    companyDropdown.addEventListener("change", updateChecklist);
+
+    resetButton.addEventListener("click", () => {
+        checklistContainer.innerHTML = "";
+    });
+});
