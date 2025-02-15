@@ -1,27 +1,26 @@
 body {
     background-color: #121212;
-    color: #ffffff;
+    color: white;
     font-family: Arial, sans-serif;
-}
-
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #1e1e1e;
-    border-radius: 10px;
-}
-
-h1 {
     text-align: center;
 }
 
-.dropdowns select {
-    display: block;
-    width: 100%;
-    margin: 10px 0;
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+.dropdowns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+select {
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .blue { background-color: blue; color: white; }
@@ -32,16 +31,29 @@ h1 {
 .violet { background-color: violet; color: white; }
 .white { background-color: white; color: black; }
 
-#resetButton {
-    width: 100%;
-    padding: 10px;
-    background: #ff4444;
+button {
+    padding: 10px 15px;
+    background-color: red;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
 #checklistContainer {
+    text-align: left;
     margin-top: 20px;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+.yellow-item { background-color: yellow; color: black; }
+.green-item { background-color: green; color: white; }
