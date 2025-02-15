@@ -2,46 +2,36 @@ body {
     background-color: #121212;
     color: white;
     font-family: Arial, sans-serif;
-    text-align: center;
+    padding: 20px;
 }
 
 .container {
-    width: 80%;
+    max-width: 800px;
     margin: auto;
-    padding: 20px;
 }
 
 .dropdowns {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-select {
-    padding: 10px;
+.dropdown {
+    padding: 8px;
     border-radius: 5px;
-    cursor: pointer;
 }
 
-.blue { background-color: blue; color: white; }
-.green { background-color: green; color: white; }
-.yellow { background-color: yellow; color: black; }
-.red { background-color: red; color: white; }
-.orange { background-color: orange; color: black; }
-.violet { background-color: violet; color: white; }
-.white { background-color: white; color: black; }
+.white { background-color: #ffffff; color: black; }
+.blue { background-color: #1E90FF; color: white; }
+.green { background-color: #32CD32; color: white; }
+.yellow { background-color: #FFD700; color: black; }
+.red { background-color: #FF4500; color: white; }
+.orange { background-color: #FFA500; color: black; }
+.violet { background-color: #8A2BE2; color: white; }
 
-button {
-    padding: 10px 15px;
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-#checklistContainer {
-    text-align: left;
-    margin-top: 20px;
+h2 {
+    border-bottom: 2px solid white;
+    padding-bottom: 5px;
 }
 
 ul {
@@ -51,9 +41,16 @@ ul {
 
 li {
     padding: 5px;
-    margin: 5px 0;
-    border-radius: 5px;
 }
 
-.yellow-item { background-color: yellow; color: black; }
-.green-item { background-color: green; color: white; }
+.yellow-text { color: #FFD700; }
+.green-text { color: #32CD32; }
+.red-text { color: #FF4500; }
+
+button {
+    background-color: #FF4500;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
