@@ -10,31 +10,42 @@
 
 <body class="bg-black p-6 text-white">
   <div class="max-w-2xl mx-auto bg-gray-800 rounded-lg shadow-lg p-6">
-    <h1 class="text-2xl font-bold mb-4" id="title"></h1>
+    <h1 class="text-2xl font-bold mb-4">Checklist</h1>
 
     <!-- Dropdown Menus -->
     <div class="flex space-x-4 mb-4">
       <div class="w-1/3">
         <label class="block text-gray-300 font-medium mb-2">Select Company:</label>
-        <select id="companyDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-green-400"></select>
+        <select id="companyDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-green-400">
+          <option>Select Company</option>
+        </select>
       </div>
       <div class="w-1/3">
         <label class="block text-gray-300 font-medium mb-2">Select AHJ:</label>
-        <select id="ahjDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-blue-400"></select>
+        <select id="ahjDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-blue-400">
+          <option>Select AHJ</option>
+        </select>
       </div>
       <div class="w-1/3">
         <label class="block text-gray-300 font-medium mb-2">Select Utility:</label>
-        <select id="utilityDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-red-400"></select>
+        <select id="utilityDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-red-400">
+          <option>Select Utility</option>
+        </select>
       </div>
     </div>
 
     <!-- Company Best Practices Section -->
-    <div id="bestPracticesContainer" class="hidden mb-6"></div>
+    <div id="bestPracticesContainer" class="hidden mb-6">
+      <h2 class="text-xl font-medium mb-3">COMPANY BEST PRACTICES:</h2>
+      <ul id="bestPracticesList" class="space-y-2"></ul>
+    </div>
 
-    <!-- Model Space Section -->
+    <!-- Checklist Section -->
     <div class="mb-6">
       <h2 class="text-xl font-medium mb-3">MODEL SPACE:</h2>
-      <ul id="checklist" class="space-y-2"></ul>
+      <ul id="checklist" class="space-y-2">
+        <!-- Checklist items will be added here -->
+      </ul>
     </div>
 
     <!-- Reset Button -->
@@ -44,85 +55,63 @@
   </div>
 
 <script>
-  const data = /* JSON data here */;
-
-  // Populate title
-  document.getElementById('title').innerText = data.title;
-
-  // Populate dropdowns
-  const companyDropdown = document.getElementById('companyDropdown');
-  data.companies.forEach(company => {
-    const option = document.createElement('option');
-    option.value = company;
-    option.innerText = company;
-    companyDropdown.appendChild(option);
-  });
-
-  const ahjDropdown = document.getElementById('ahjDropdown');
-  data.ahjs.forEach(ahj => {
-    const option = document.createElement('option');
-    option.value = ahj;
-    option.innerText = ahj;
-    ahjDropdown.appendChild(option);
-  });
-
-  const utilityDropdown = document.getElementById('utilityDropdown');
-  data.utilities.forEach(utility => {
-    const option = document.createElement('option');
-    option.value = utility;
-    option.innerText = utility;
-    utilityDropdown.appendChild(option);
-  });
-
-  // Populate checklist
-  const checklist = document.getElementById('checklist');
-  data.checklist.forEach(item => {
-    const li = document.createElement('li');
-    li.innerHTML = `<label><input type="checkbox" class="mr-2">${item}</label>`;
-    checklist.appendChild(li);
-  });
-
-  // Handle Reset Button
-  document.getElementById('resetButton').addEventListener('click', () => {
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
-  });
-
-  // Show Company Best Practices when a company is selected
-  companyDropdown.addEventListener('change', (event) => {
-    const selectedCompany = event.target.value;
-    const bestPracticesContainer = document.getElementById('bestPracticesContainer');
-    bestPracticesContainer.innerHTML = ''; // Clear previous content
-    if (data.bestPractices[selectedCompany]) {
-      const h2 = document.createElement('h2');
-      h2.className = 'text-xl font-medium mb-3';
-      h2.innerText = 'COMPANY BEST PRACTICES:';
-      bestPracticesContainer.appendChild(h2);
-
-      const ul = document.createElement('ul');
-      ul.className = 'space-y-2';
-      data.bestPractices[selectedCompany].forEach(item => {
-        const li = document.createElement('li');
-        if (Array.isArray(item)) {
-          li.innerHTML = `<label>${item[0]}</label>`;
-          const subUl = document.createElement('ul');
-          subUl.className = 'ml-6 space-y-1';
-          item.slice(1).forEach(subItem => {
-            const subLi = document.createElement('li');
-            subLi.innerText = subItem;
-            subUl.appendChild(subLi);
-          });
-          li.appendChild(subUl);
-        } else {
-          li.innerHTML = `<label>${item}</label>`;
-        }
-        ul.appendChild(li);
+  // Load JSON data
+  fetch('checklistData.json')
+    .then(response => response.json())
+    .then(data => {
+      // Populate Company Dropdown
+      const companyDropdown = document.getElementById('companyDropdown');
+      data.companies.forEach(company => {
+        const option = document.createElement('option');
+        option.value = company.name;
+        option.textContent = company.name;
+        companyDropdown.appendChild(option);
       });
-      bestPracticesContainer.appendChild(ul);
-      bestPracticesContainer.classList.remove('hidden');
-    } else {
-      bestPracticesContainer.classList.add('hidden');
-    }
-  });
+
+      // Populate AHJ Dropdown
+      const ahjDropdown = document.getElementById('ahjDropdown');
+      data.ahjs.forEach(ahj => {
+        const option = document.createElement('option');
+        option.value = ahj;
+        option.textContent = ahj;
+        ahjDropdown.appendChild(option);
+      });
+
+      // Populate Utility Dropdown
+      const utilityDropdown = document.getElementById('utilityDropdown');
+      data.utilities.forEach(utility => {
+        const option = document.createElement('option');
+        option.value = utility;
+        option.textContent = utility;
+        utilityDropdown.appendChild(option);
+      });
+
+      // Show Company Best Practices when a company is selected
+      companyDropdown.addEventListener('change', (event) => {
+        const selectedCompany = event.target.value;
+        const bestPracticesContainer = document.getElementById('bestPracticesContainer');
+        const bestPracticesList = document.getElementById('bestPracticesList');
+        bestPracticesList.innerHTML = ''; // Clear previous practices
+
+        const company = data.companies.find(c => c.name === selectedCompany);
+        if (company) {
+          company.bestPractices.forEach(practice => {
+            const li = document.createElement('li');
+            li.textContent = practice;
+            bestPracticesList.appendChild(li);
+          });
+          bestPracticesContainer.classList.remove('hidden');
+        } else {
+          bestPracticesContainer.classList.add('hidden');
+        }
+      });
+
+      // Handle Reset Button
+      document.getElementById('resetButton').addEventListener('click', () => {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+      });
+    })
+    .catch(error => console.error('Error loading JSON:', error));
 </script>
 
 </body>
