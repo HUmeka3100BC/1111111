@@ -1,0 +1,35 @@
+{
+  "states": {
+    "California": {
+      "companies": ["THRIVE", "CITADEL"],
+      "ahjs": ["FRESNO", "UNION CITY"],
+      "utilities": ["PG&E", "SCE"]
+    },
+    "Florida": {
+      "companies": [],
+      "ahjs": [],
+      "utilities": []
+    }
+  },
+  "ahjChecklist": {
+    "FRESNO": {
+      "PV3": "Testing lang",
+      "PV4": "Show PG&E note if needed"
+    },
+    "UNION CITY": {
+      "PV4": "Ok ok ok"
+    }
+  },
+  "ftdChecklist": {
+    "COMPANY BEST PRACTICES": [],
+    "MODEL SPACE": ["FILL OUT DWG PROPS UTC", "AZIMUTH UTC", "DRAW HOUSE", "PROPERTY LINE", "FENCE", "DRIVEWAY"],
+    "PV0": ["SELECT CORRECT PROJECT DATA DROPDOWN UTC"],
+    "PV1": ["UPDATE SITE NOTES"],
+    "PV2": ["LEGEND"],
+    "PV2A": ["ADD NO DWELLING WINDOWS"],
+    "PV3": ["ATTACH THE CORRECT ATTACHMENT DWG"],
+    "PV4": ["WIRE TABLE"],
+    "PV5": ["LABEL 10"],
+    "POST CAD": ["UPDATE SHEET NAME"]
+  }
+}
