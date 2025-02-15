@@ -1,0 +1,47 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #1e1e1e;
+    border-radius: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.dropdowns select {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.blue { background-color: blue; color: white; }
+.green { background-color: green; color: white; }
+.yellow { background-color: yellow; color: black; }
+.red { background-color: red; color: white; }
+.orange { background-color: orange; color: black; }
+.violet { background-color: violet; color: white; }
+.white { background-color: white; color: black; }
+
+#resetButton {
+    width: 100%;
+    padding: 10px;
+    background: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#checklistContainer {
+    margin-top: 20px;
+}
