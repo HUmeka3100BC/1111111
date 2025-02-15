@@ -11,31 +11,35 @@
             "utilities": []
         }
     },
-    "checklists": {
-        "revision": [],
-        "ftd": [
-            { "category": "COMPANY BEST PRACTICES", "items": [] },
-            { "category": "MODEL SPACE", "items": ["FILL OUT DWG PROPS UTC", "AZIMUTH UTC", "DRAW HOUSE", "PROPERTY LINE", "FENCE", "DRIVEWAY"] },
-            { "category": "PV0", "items": ["SELECT CORRECT PROJECT DATA DROPDOWN UTC"] },
-            { "category": "PV1", "items": ["UPDATE SITE NOTES"] },
-            { "category": "PV2", "items": ["LEGEND"] },
-            { "category": "PV2A", "items": ["ADD NO DWELLING WINDOWS"] },
-            { "category": "PV3", "items": ["ATTACH THE CORRECT ATTACHMENT DWG"] },
-            { "category": "PV4", "items": ["WIRE TABLE"] },
-            { "category": "PV5", "items": ["LABEL 10"] },
-            { "category": "POST CAD", "items": ["UPDATE SHEET NAME"] }
-        ]
-    },
-    "ahjNotes": {
+    "ahjData": {
         "Fresno": {
-            "PV4": "Show PG&E note if needed",
-            "PV3": "Testing lang"
+            "PV4": "show PG&E note if needed",
+            "PV3": "testing lang"
         },
         "Union City": {
-            "PV4": "OK OK OK"
+            "PV4": "ok ok ok"
         }
     },
-    "companyNotes": {
+    "companyData": {
         "Thrive": "SWITCH SOLAR IS THE COMPANY LOGO FOR BOM AND CAD DESIGN"
+    },
+    "ftdChecklist": {
+        "Company Best Practices": [],
+        "Model Space": [
+            "FILL OUT DWG PROPS UTC",
+            "AZIMUTH UTC",
+            "DRAW HOUSE",
+            "PROPERTY LINE",
+            "FENCE",
+            "DRIVEWAY"
+        ],
+        "PV0": ["SELECT CORRECT PROJECT DATA DROPDOWN UTC"],
+        "PV1": ["UPDATE SITE NOTES"],
+        "PV2": ["LEGEND"],
+        "PV2A": ["ADD NO DWELLING WINDOWS"],
+        "PV3": ["ATTACH THE CORRECT ATTACHMENT DWG"],
+        "PV4": ["WIRE TABLE"],
+        "PV5": ["LABEL 10"],
+        "Post CAD": ["UPDATE SHEET NAME"]
     }
 }
