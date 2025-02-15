@@ -3,46 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Checklist</title>
+    <title>Checklist with Dropdowns</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <div class="container">
+        <h1>Dynamic Checklist</h1>
+
         <div class="dropdowns">
-            <select id="checklistDropdown" class="dropdown white">
-                <option value="">Select Checklist</option>
-                <option value="revision">Revision Checklist</option>
-                <option value="ftd">FTD Checklist</option>
+            <select id="checklist" class="dropdown">
+                <option value="FTD CHECKLIST">FTD CHECKLIST</option>
+                <option value="REVISION CHECKLIST">REVISION CHECKLIST</option>
             </select>
-
-            <select id="stateDropdown" class="dropdown blue">
+            <select id="state" class="dropdown">
                 <option value="">Select State</option>
+                <option value="California">California</option>
+                <option value="Florida">Florida</option>
             </select>
-
-            <select id="companyDropdown" class="dropdown green">
+            <select id="company" class="dropdown">
                 <option value="">Select Company</option>
             </select>
-
-            <select id="ahjDropdown" class="dropdown yellow">
+            <select id="ahj" class="dropdown">
                 <option value="">Select AHJ</option>
             </select>
-
-            <select id="utilityDropdown" class="dropdown red">
+            <select id="utility" class="dropdown">
                 <option value="">Select Utility</option>
             </select>
-
-            <select id="inverterDropdown" class="dropdown orange">
+            <select id="inverter" class="dropdown">
                 <option value="">Select Inverter</option>
             </select>
-
-            <select id="batteryDropdown" class="dropdown violet">
+            <select id="battery" class="dropdown">
                 <option value="">Select Battery</option>
             </select>
         </div>
 
-        <div id="checklistContainer">
-            <h2>Checklist</h2>
-            <ul id="checklistItems"></ul>
+        <div id="checklistContent">
+            <!-- Checklist content will be displayed here -->
         </div>
 
         <button id="resetButton">Reset</button>
