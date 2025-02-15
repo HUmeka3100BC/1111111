@@ -1,9 +1,41 @@
 {
-  "title": "Checklist",
   "companies": [
-    "SAMEDAY",
-    "NORTH VALLEY",
-    "CITADEL"
+    {
+      "name": "SAMEDAY",
+      "bestPractices": [
+        "Racking - IRONRIDGE XR10",
+        "Comp Shingle, Flat Roof, Standing Seam(If the screws can be embedded in rafter)- Stronghold Butyl",
+        "BOM:",
+        "ATTACHMENT:IRONRIDGE QM-HUG-01-B1 HALO ULTRA GRIP",
+        "SCREWS:HW-RD1430-01-M1 RD STRUCTURAL SCREW 3.0L (FOR COMP SHINGLE ROOF)",
+        "MID CLAMP:UFO-CL-01-B1, Universal Module Clamp, Black",
+        "END CLAMP:UFO-END-01-B1, Universal End Clamp, Black"
+      ]
+    },
+    {
+      "name": "NORTH VALLEY",
+      "bestPractices": [
+        "If proposed panel placement does not fit. Move the excess mods to the next best sun exposed area",
+        "60A Eaton ACD as minimum they don't use 30A",
+        "Racking - Ironridge Aire A1, Tile - All Tile Hook, Comp shingle - Halo Ultragrip"
+      ]
+    },
+    {
+      "name": "CITADEL",
+      "bestPractices": [
+        "Snap N Rack UR40 Black Rail, end clamps, and mid clamps.",
+        "Please shoot for the contracted amount of MCIs, which is usually just dividing the number of mods by 2 and rounding up when needed.",
+        "We do NOT install on: CALPAC/Stone Coated Steel roofs",
+        "We DO install on: Comp shingle – Snap N Rack L Foot and Flashing, Flat Concrete – Snap N Rack Tile Hook, etc."
+      ]
+    },
+    {
+      "name": "THRIVE",
+      "bestPractices": [
+        "Racking - Unirac NXT",
+        "Comp Shingle, Flat Roof, Standing Seam(If the screws can be embedded in rafter)- Stronghold Butyl"
+      ]
+    }
   ],
   "ahjs": [
     "AHJ A",
@@ -13,115 +45,5 @@
   "utilities": [
     "PG&E",
     "Utility B"
-  ],
-  "bestPractices": {
-    "CITADEL": [
-      "Snap N Rack UR40 Black Rail, end clamps, and mid clamps.",
-      "Please shoot for the contracted amount of MCIs, which is usually just dividing the number of mods by 2 and rounding up when needed.",
-      "We do NOT install on: CALPAC/Stone Coated Steel roofs",
-      "We DO install on:",
-      [
-        "Comp shingle – Snap N Rack L Foot and Flashing",
-        "Flat Concrete – Snap N Rack Tile Hook",
-        "Curved (S/W) Concrete Tile - Snap N Rack Adjustable Tile Hook",
-        "TPO - Snap N Rack Omnibase and Omnishield",
-        "Rolled Comp/Torchdown - Snap N Rack Omnibase and Omnishield",
-        "PVC - Snap N Rack Omnibase and Omnishield",
-        "Tar and Gravel - Snap N Rack Omnibase and Omnishield (sometimes install)"
-      ],
-      "Snap N Rack Tilt Kit as needed/called out. If there is an obvious interrow spacing between the PV modules (18” is typical) on a flat/low-slope roof, odds are it needs a tilt.",
-      "For vaulted ceilings, we use Snap N Rack Omnibase and Omnishield to attach to the decking, but if it is comp shingle and has a pitch, we will use Zilla plates and flashings to attach to the decking."
-    ],
-    "NORTH VALLEY": [
-      "If proposed panel placement does not fit. Move the excess mods to the next best sun exposed area",
-      "60A Eaton ACD as minimum they don't use 30A",
-      "Racking - Ironridge Aire A1, Tile - All Tile Hook, Comp shingle - Halo Ultragrip"
-    ],
-    "SAMEDAY": [
-      "Racking - IRONRIDGE XR10",
-      "Comp Shingle, Flat Roof, Standing Seam(If the screws can be embedded in rafter)- Stronghold Butyl",
-      "BOM:",
-      "ATTACHMENT:IRONRIDGE QM-HUG-01-B1 HALO ULTRA GRIP",
-      "SCREWS:HW-RD1430-01-M1 RD STRUCTURAL SCREW 3.0L (FOR COMP SHINGLE ROOF)",
-      "MID CLAMP:UFO-CL-01-B1, Universal Module Clamp, Black",
-      "END CLAMP:UFO-END-01-B1, Universal End Clamp, Black"
-    ],
-    "THRIVE": [
-      "Racking - Unirac NXT",
-      "Comp Shingle, Flat Roof, Standing Seam(If the screws can be embedded in rafter)- Stronghold Butyl"
-    ]
-  },
-  "checklist": [
-    "FILL OUT DWG PROPS UTC",
-    "AZIMUTH UTC",
-    "DRAW HOUSE",
-    "PROPERTY LINE",
-    "FENCE",
-    "DRIVEWAY",
-    "PROPERTY DIMENSION",
-    "FIRE SETBACKS",
-    "RAFTERS",
-    "MODULES",
-    "ATTACHMENTS",
-    "USE COUNT ATTACHMENTS UTC",
-    "EQUIPMENT ICONS",
-    "CONDUIT",
-    "AHJ NOTES"
-  ],
-  "pvSections": {
-    "PV0": [
-      "SELECT CORRECT PROJECT DATA DROPDOWN UTC",
-      "FOR BATTERY JOBS EDIT THE ROW BELOW THE BATTERY NAME. DON'T LEAVE BLANK"
-    ],
-    "PV1": [
-      "UPDATE SITE NOTES",
-      "BLOWUP VIEW",
-      "TURN OFF THE LAYERS THAT ARE NOT REQUIRED TO BE DISPLAYED IN THE BLOW-UP VIEW.",
-      "EQUIPMENT ICON CALLOUT (ENSURE THE MODEL AND PART NUMBER ARE SHOWN)",
-      "MODULE CALLOUT",
-      "DRIVEWAY LABEL",
-      "PROPERTY LINE LABEL",
-      "STREET NAME LABEL",
-      "AHJ NOTES"
-    ],
-    "PV2": [
-      "LEGEND",
-      "ROOF CALLOUT",
-      "MICROINVERTER/OPTIMIZER/MCI CALLOUT",
-      "FIRE ACCESS POINT CALLOUT",
-      "RAILS CALLOUT",
-      "ATTACHMENT CALLOUT",
-      "AHJ NOTES"
-    ],
-    "PVA": [
-      "ADD NO DWELLING WINDOWS AND DOORS NOTE IF NEEDED"
-    ],
-    "PV3": [
-      "ATTACH THE CORRECT ATTACHMENT DWG",
-      "UPDATE THE CALLOUTS ON THE DWG FILE IF NEEDED (EX.ROOF TYPE CALLOUT)",
-      "IS THE SCREW LENGTH CORRECT?",
-      "AHJ NOTES"
-    ],
-    "PV4": [
-      "WIRE TABLE",
-      "ENSURE AMBIENT TEMP IS CORRECT",
-      "REMOVE BREAKER SIZE IN THE OCPD CALCS IF NOT IN THE PLANSET",
-      "CHANGE THE “OUTPUT” TO “BACKFEED”",
-      "GROUNDING LABEL",
-      "AHJ NOTES"
-    ],
-    "PV5": [
-      "LABEL 10",
-      "LABEL 13",
-      "LABEL 15",
-      "PLACARD ROTATION UTC",
-      "AHJ NOTES"
-    ],
-    "POST CAD": [
-      "UPDATE SHEET NAME",
-      "UPDATE SHEET INDEX",
-      "AHJ NOTES",
-      "SPEC SHEETS"
-    ]
-  }
+  ]
 }
