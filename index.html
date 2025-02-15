@@ -4,46 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Checklist</title>
-    <style>
-        select { margin: 10px; padding: 5px; }
-        .checklist { background-color: white; padding: 10px; border: 1px solid #ccc; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Dynamic Checklist</h2>
-    
-    <label>Checklist Type:</label>
-    <select id="checklistType" style="background-color: white;">
-        <option value="revision">REVISION CHECKLIST</option>
-        <option value="ftd">FTD CHECKLIST</option>
-    </select>
-    
-    <label>State:</label>
-    <select id="state" style="background-color: blue;"></select>
-    
-    <label>Company:</label>
-    <select id="company" style="background-color: green;"></select>
-    
-    <label>AHJ:</label>
-    <select id="ahj" style="background-color: yellow;"></select>
-    
-    <label>Utility:</label>
-    <select id="utility" style="background-color: red;"></select>
-    
-    <label>Inverter:</label>
-    <select id="inverter" style="background-color: orange;"></select>
-    
-    <label>Battery:</label>
-    <select id="battery" style="background-color: violet;"></select>
-    
-    <div class="checklist">
-        <h3>Checklist</h3>
-        <div id="checklistItems"></div>
+    <div class="container">
+        <h1>Dynamic Checklist</h1>
+        <div class="dropdowns">
+            <select id="stateDropdown" class="blue">
+                <option value="">Select State</option>
+            </select>
+            <select id="companyDropdown" class="green">
+                <option value="">Select Company</option>
+            </select>
+            <select id="ahjDropdown" class="yellow">
+                <option value="">Select AHJ</option>
+            </select>
+            <select id="utilityDropdown" class="red">
+                <option value="">Select Utility</option>
+            </select>
+            <select id="inverterDropdown" class="orange">
+                <option value="">Select Inverter</option>
+            </select>
+            <select id="batteryDropdown" class="violet">
+                <option value="">Select Battery</option>
+            </select>
+            <select id="checklistDropdown" class="white">
+                <option value="">Select Checklist</option>
+                <option value="revision">Revision Checklist</option>
+                <option value="ftd">FTD Checklist</option>
+            </select>
+        </div>
+        <div id="checklistContainer"></div>
+        <button id="resetButton">Reset</button>
     </div>
-    
-    <button onclick="resetChecklist()">Reset Checklist</button>
-    
-    <script src="data.json"></script>
     <script src="script.js"></script>
 </body>
 </html>
