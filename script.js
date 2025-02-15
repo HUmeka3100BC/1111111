@@ -1,87 +1,83 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const stateDropdown = document.getElementById("stateDropdown");
-    const companyDropdown = document.getElementById("companyDropdown");
-    const ahjDropdown = document.getElementById("ahjDropdown");
-    const utilityDropdown = document.getElementById("utilityDropdown");
-    const inverterDropdown = document.getElementById("inverterDropdown");
-    const batteryDropdown = document.getElementById("batteryDropdown");
-    const checklistDropdown = document.getElementById("checklistDropdown");
-    const checklistContainer = document.getElementById("checklistContainer");
-    const resetButton = document.getElementById("resetButton");
-
+document.addEventListener("DOMContentLoaded", () => {
     let data;
 
     fetch("data.json")
         .then(response => response.json())
-        .then(jsonData => {
-            data = jsonData;
-            populateDropdown(stateDropdown, Object.keys(data.states));
+        .then(json => {
+            data = json;
+            populateDropdown("stateDropdown", Object.keys(data.states));
         });
 
-    function populateDropdown(dropdown, items) {
-        dropdown.innerHTML = '<option value="">Select</option>';
-        items.forEach(item => {
-            let option = document.createElement("option");
-            option.value = item;
-            option.textContent = item;
-            dropdown.appendChild(option);
+    function populateDropdown(id, options) {
+        const dropdown = document.getElementById(id);
+        dropdown.innerHTML = `<option value="">Select ${id.replace("Dropdown", "")}</option>`;
+        options.forEach(option => {
+            const opt = document.createElement("option");
+            opt.value = option;
+            opt.textContent = option;
+            dropdown.appendChild(opt);
         });
     }
 
-    stateDropdown.addEventListener("change", function() {
-        let selectedState = stateDropdown.value;
-        if (selectedState) {
-            populateDropdown(companyDropdown, data.states[selectedState].companies || []);
-            populateDropdown(ahjDropdown, data.states[selectedState].ahjs || []);
-            populateDropdown(utilityDropdown, data.states[selectedState].utilities || []);
+    document.getElementById("stateDropdown").addEventListener("change", function () {
+        const state = this.value;
+        if (state) {
+            populateDropdown("companyDropdown", data.states[state].companies || []);
+            populateDropdown("ahjDropdown", data.states[state].ahjs || []);
+            populateDropdown("utilityDropdown", data.states[state].utilities || []);
+        } else {
+            ["companyDropdown", "ahjDropdown", "utilityDropdown"].forEach(id => populateDropdown(id, []));
         }
+        updateChecklist();
     });
 
-    ahjDropdown.addEventListener("change", function() {
-        let selectedAhj = ahjDropdown.value;
+    document.querySelectorAll("select").forEach(dropdown => {
+        dropdown.addEventListener("change", updateChecklist);
+    });
+
+    function updateChecklist() {
+        const ahj = document.getElementById("ahjDropdown").value;
+        const company = document.getElementById("companyDropdown").value;
+        const checklistType = document.getElementById("checklistDropdown").value;
+        const checklistContainer = document.getElementById("checklist");
+        
         checklistContainer.innerHTML = "";
-        if (selectedAhj && data.ahjs[selectedAhj]) {
-            let ahjNotes = data.ahjs[selectedAhj];
-            Object.keys(ahjNotes).forEach(section => {
-                let note = document.createElement("p");
-                note.style.color = "yellow";
-                note.innerHTML = `<strong>${section}:</strong> ${ahjNotes[section]}`;
-                checklistContainer.appendChild(note);
-            });
-        }
-    });
 
-    companyDropdown.addEventListener("change", function() {
-        let selectedCompany = companyDropdown.value;
-        if (selectedCompany && data.companies[selectedCompany]) {
-            let note = document.createElement("p");
-            note.style.color = "green";
-            note.innerHTML = `<strong>Company Note:</strong> ${data.companies[selectedCompany]}`;
-            checklistContainer.appendChild(note);
-        }
-    });
-
-    checklistDropdown.addEventListener("change", function() {
-        checklistContainer.innerHTML = "";
-        let checklistType = checklistDropdown.value;
         if (checklistType && data.checklists[checklistType]) {
-            data.checklists[checklistType].forEach(item => {
-                let checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.id = item;
-                let label = document.createElement("label");
-                label.htmlFor = item;
-                label.textContent = item;
-                checklistContainer.appendChild(checkbox);
-                checklistContainer.appendChild(label);
-                checklistContainer.appendChild(document.createElement("br"));
+            data.checklists[checklistType].forEach(section => {
+                const header = document.createElement("li");
+                header.textContent = section.category;
+                checklistContainer.appendChild(header);
+
+                section.items.forEach(item => {
+                    const li = document.createElement("li");
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    li.appendChild(checkbox);
+                    li.appendChild(document.createTextNode(` ${item}`));
+                    checklistContainer.appendChild(li);
+                });
             });
         }
-    });
 
-    resetButton.addEventListener("click", function() {
-        document.querySelectorAll("#checklistContainer input[type='checkbox']").forEach(checkbox => {
-            checkbox.checked = false;
-        });
+        if (ahj && data.ahjNotes[ahj]) {
+            Object.entries(data.ahjNotes[ahj]).forEach(([key, value]) => {
+                const li = document.createElement("li");
+                li.textContent = value;
+                li.classList.add("yellow-item");
+                checklistContainer.appendChild(li);
+            });
+        }
+
+        if (company && data.companyNotes[company]) {
+            const li = document.createElement("li");
+            li.textContent = data.companyNotes[company];
+            li.classList.add("green-item");
+            checklistContainer.appendChild(li);
+        }
+    }
+
+    document.getElementById("resetButton").addEventListener("click", () => {
+        document.querySelectorAll("input[type='checkbox']").forEach(cb => cb.checked = false);
     });
 });
