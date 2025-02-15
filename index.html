@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="container">
-        <h1>Dynamic Checklist</h1>
         <div class="dropdowns">
             <select id="stateDropdown" class="blue">
                 <option value="">Select State</option>
@@ -34,9 +33,15 @@
                 <option value="ftd">FTD Checklist</option>
             </select>
         </div>
-        <div id="checklistContainer"></div>
+        
         <button id="resetButton">Reset</button>
+
+        <div id="checklistContainer">
+            <h2>Checklist</h2>
+            <ul id="checklist"></ul>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
