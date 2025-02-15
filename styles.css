@@ -1,27 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    background-color: #2e2e2e;
-    color: #fff;
+    background-color: #121212;
+    color: #ffffff;
     font-family: Arial, sans-serif;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #3b3b3b;
-    padding: 20px;
-    border-radius: 10px;
+    width: 80%;
+    margin: auto;
 }
 
 .dropdowns {
@@ -31,30 +16,74 @@ h1 {
 }
 
 .dropdown {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
     padding: 10px;
-    margin: 0 5px;
-    background-color: #444;
-    border: 1px solid #666;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 14px;
+    margin-right: 10px;
+    flex: 1;
 }
 
-#checklistContent {
+.checklist-items {
     margin-top: 20px;
 }
 
+.checklist-item {
+    margin: 5px 0;
+}
+
 button {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #ff4747;
-    color: #fff;
+    background-color: #ff5722;
+    color: #ffffff;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #ff2525;
+    background-color: #e64a19;
+}body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+.dropdowns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dropdown {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
+    padding: 10px;
+    margin-right: 10px;
+    flex: 1;
+}
+
+.checklist-items {
+    margin-top: 20px;
+}
+
+.checklist-item {
+    margin: 5px 0;
+}
+
+button {
+    background-color: #ff5722;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e64a19;
 }
