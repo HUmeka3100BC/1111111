@@ -1,45 +1,31 @@
 {
-    "states": {
-        "California": {
-            "companies": ["Thrive", "Citadel"],
-            "ahjs": ["Fresno", "Union City"],
-            "utilities": ["PG&E", "SCE"]
-        },
-        "Florida": {
-            "companies": [],
-            "ahjs": [],
-            "utilities": []
+    "California": {
+        "companies": ["THRIVE", "CITADEL"],
+        "ahj": ["FRESNO", "UNION CITY"],
+        "utility": ["PG&E", "SCE"],
+        "inverter": ["ENPHASE", "SOLAREDGE", "TESLA"],
+        "battery": ["ENPHASE", "SOLAREDGE", "POWERWALL 3"],
+        "notes": {
+            "FRESNO": {
+                "pv4": "show PG&E note if needed",
+                "pv3": "testing lang"
+            },
+            "UNION CITY": {
+                "pv4": "ok ok ok"
+            }
         }
     },
-    "ahjData": {
-        "Fresno": {
-            "PV4": "show PG&E note if needed",
-            "PV3": "testing lang"
-        },
-        "Union City": {
-            "PV4": "ok ok ok"
+    "Florida": {
+        "companies": ["THRIVE"],
+        "ahj": ["FRESNO"],
+        "utility": ["PG&E"],
+        "inverter": ["ENPHASE"],
+        "battery": ["POWERWALL 3"],
+        "notes": {
+            "FRESNO": {
+                "pv4": "show PG&E note if needed",
+                "pv3": "testing lang"
+            }
         }
-    },
-    "companyData": {
-        "Thrive": "SWITCH SOLAR IS THE COMPANY LOGO FOR BOM AND CAD DESIGN"
-    },
-    "ftdChecklist": {
-        "Company Best Practices": [],
-        "Model Space": [
-            "FILL OUT DWG PROPS UTC",
-            "AZIMUTH UTC",
-            "DRAW HOUSE",
-            "PROPERTY LINE",
-            "FENCE",
-            "DRIVEWAY"
-        ],
-        "PV0": ["SELECT CORRECT PROJECT DATA DROPDOWN UTC"],
-        "PV1": ["UPDATE SITE NOTES"],
-        "PV2": ["LEGEND"],
-        "PV2A": ["ADD NO DWELLING WINDOWS"],
-        "PV3": ["ATTACH THE CORRECT ATTACHMENT DWG"],
-        "PV4": ["WIRE TABLE"],
-        "PV5": ["LABEL 10"],
-        "Post CAD": ["UPDATE SHEET NAME"]
     }
 }
