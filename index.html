@@ -7,22 +7,19 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>Dynamic Checklist</h1>
-
+        <h1>Checklist with Dropdowns</h1>
         <div class="dropdowns">
             <select id="checklist" class="dropdown">
-                <option value="FTD CHECKLIST">FTD CHECKLIST</option>
-                <option value="REVISION CHECKLIST">REVISION CHECKLIST</option>
-            </select>
-            <select id="state" class="dropdown">
-                <option value="">Select State</option>
-                <option value="California">California</option>
-                <option value="Florida">Florida</option>
+                <option value="">Select Checklist</option>
+                <option value="revision">Revision Checklist</option>
+                <option value="ftd">FTD Checklist</option>
             </select>
             <select id="company" class="dropdown">
                 <option value="">Select Company</option>
+            </select>
+            <select id="state" class="dropdown">
+                <option value="">Select State</option>
             </select>
             <select id="ahj" class="dropdown">
                 <option value="">Select AHJ</option>
@@ -37,14 +34,9 @@
                 <option value="">Select Battery</option>
             </select>
         </div>
-
-        <div id="checklistContent">
-            <!-- Checklist content will be displayed here -->
-        </div>
-
-        <button id="resetButton">Reset</button>
+        <div id="checklistItems" class="checklist-items"></div>
+        <button id="resetButton">Reset Checkboxes</button>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
