@@ -1,56 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #121212;
-    color: white;
+    background-color: #2e2e2e;
+    color: #fff;
     font-family: Arial, sans-serif;
     padding: 20px;
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .container {
-    max-width: 800px;
-    margin: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #3b3b3b;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .dropdowns {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
 .dropdown {
-    padding: 8px;
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #444;
+    border: 1px solid #666;
     border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
 }
 
-.white { background-color: #ffffff; color: black; }
-.blue { background-color: #1E90FF; color: white; }
-.green { background-color: #32CD32; color: white; }
-.yellow { background-color: #FFD700; color: black; }
-.red { background-color: #FF4500; color: white; }
-.orange { background-color: #FFA500; color: black; }
-.violet { background-color: #8A2BE2; color: white; }
-
-h2 {
-    border-bottom: 2px solid white;
-    padding-bottom: 5px;
+#checklistContent {
+    margin-top: 20px;
 }
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-li {
-    padding: 5px;
-}
-
-.yellow-text { color: #FFD700; }
-.green-text { color: #32CD32; }
-.red-text { color: #FF4500; }
 
 button {
-    background-color: #FF4500;
-    color: white;
-    padding: 10px;
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #ff4747;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff2525;
 }
