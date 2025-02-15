@@ -1,0 +1,9 @@
+{
+    "inverters": [
+      { "name": "TESLA", "color": "orange" },
+      { "name": "ENPHASE", "color": "orange" },
+      { "name": "SOLAREDGE", "color": "orange" },
+      { "name": "APS", "color": "orange" }
+    ]
+  }
+  

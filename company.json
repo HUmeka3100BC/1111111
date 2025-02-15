@@ -1,0 +1,9 @@
+{
+  "companies": [
+    { "name": "THRIVE", "color": "green" },
+    { "name": "SAMEDAY", "color": "green" },
+    { "name": "NORTH VALLEY", "color": "green" },
+    { "name": "CITADEL", "color": "green" }
+  ],
+  "company_best_practices": []
+}

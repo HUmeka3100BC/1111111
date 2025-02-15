@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .dropdown-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    select {
+      padding: 10px;
+      margin: 5px;
+      background-color: #333;
+      color: white;
+      border: 1px solid #444;
+    }
+    .checklist-container {
+      margin-top: 20px;
+    }
+    .checklist-container label {
+      display: block;
+      padding: 5px;
+    }
+    .green { color: green; }
+    .blue { color: blue; }
+    .yellow { color: yellow; }
+    .red { color: red; }
+    .violet { color: violet; }
+    .orange { color: orange; }
+    .dark-button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .dark-button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dropdowns for Company, AHJ, Utility, Battery, Inverter, and State -->
+  <div class="dropdown-container">
+    <select id="company" class="dropdown">
+      <option value="">Select Company</option>
+    </select>
+    <select id="ahj" class="dropdown">
+      <option value="">Select AHJ</option>
+    </select>
+    <select id="utility" class="dropdown">
+      <option value="">Select Utility</option>
+    </select>
+    <select id="battery" class="dropdown">
+      <option value="">Select Battery</option>
+    </select>
+    <select id="inverter" class="dropdown">
+      <option value="">Select Inverter</option>
+    </select>
+    <select id="state" class="dropdown">
+      <option value="">Select State</option>
+    </select>
+  </div>
+
+  <!-- Checklist -->
+  <div class="checklist-container">
+    <div id="modelSpace"></div>
+    <div id="pv0"></div>
+    <div id="pv1"></div>
+    <div id="pv2"></div>
+    <div id="pva"></div>
+    <div id="pv3"></div>
+    <div id="pv4"></div>
+    <div id="pv5"></div>
+    <div id="postCad"></div>
+  </div>
+
+  <!-- Reset Button -->
+  <button class="dark-button" onclick="resetForm()">Reset</button>
+
+  <script>
+    // Fetch all JSON data
+    function fetchDropdownData() {
+      Promise.all([
+        fetch('company.json'),
+        fetch('ahj.json'),
+        fetch('utility.json'),
+        fetch('battery.json'),
+        fetch('inverter.json'),
+        fetch('state.json'),
+        fetch('requirements.json')
+      ])
+      .then(responses => Promise.all(responses.map(res => res.json())))
+      .then(data => {
+        const [companies, ahjs, utilities, batteries, inverters, states, requirements] = data;
+        populateDropdowns(companies, ahjs, utilities, batteries, inverters, states);
+        handleDropdownChanges(companies, ahjs, utilities, batteries, inverters, states, requirements);
+      })
+      .catch(error => console.error('Error loading JSON files:', error));
+    }
+
+    // Populate Dropdowns with data from JSON
+    function populateDropdowns(companies, ahjs, utilities, batteries, inverters, states) {
+      const companyDropdown = document.getElementById("company");
+      companies.forEach(company => {
+        const option = document.createElement("option");
+        option.value = company.name;
+        option.textContent = company.name;
+        companyDropdown.appendChild(option);
+      });
+
+      const ahjDropdown = document.getElementById("ahj");
+      ahjs.forEach(ahj => {
+        const option = document.createElement("option");
+        option.value = ahj.name;
+        option.textContent = ahj.name;
+        ahjDropdown.appendChild(option);
+      });
+
+      const utilityDropdown = document.getElementById("utility");
+      utilities.forEach(utility => {
+        const option = document.createElement("option");
+        option.value = utility.name;
+        option.textContent = utility.name;
+        utilityDropdown.appendChild(option);
+      });
+
+      const batteryDropdown = document.getElementById("battery");
+      batteries.forEach(battery => {
+        const option = document.createElement("option");
+        option.value = battery.name;
+        option.textContent = battery.name;
+        batteryDropdown.appendChild(option);
+      });
+
+      const inverterDropdown = document.getElementById("inverter");
+      inverters.forEach(inverter => {
+        const option = document.createElement("option");
+        option.value = inverter.name;
+        option.textContent = inverter.name;
+        inverterDropdown.appendChild(option);
+      });
+
+      const stateDropdown = document.getElementById("state");
+      states.forEach(state => {
+        const option = document.createElement("option");
+        option.value = state.name;
+        option.textContent = state.name;
+        stateDropdown.appendChild(option);
+      });
+    }
+
+    // Handle dropdown changes and update the checklist
+    function handleDropdownChanges(companies, ahjs, utilities, batteries, inverters, states, requirements) {
+      document.querySelectorAll("select").forEach(select => {
+        select.addEventListener("change", () => {
+          const selectedCompany = document.getElementById("company").value;
+          const selectedAhj = document.getElementById("ahj").value;
+          const selectedUtility = document.getElementById("utility").value;
+          const selectedBattery = document.getElementById("battery").value;
+          const selectedInverter = document.getElementById("inverter").value;
+          const selectedState = document.getElementById("state").value;
+
+          // Update checklist dynamically based on selected options
+          updateChecklist(selectedCompany, selectedAhj, selectedUtility, selectedBattery, selectedInverter, selectedState, requirements);
+        });
+      });
+    }
+
+    // Update the checklist based on selected dropdown values
+    function updateChecklist(company, ahj, utility, battery, inverter, state, requirements) {
+      const modelSpaceDiv = document.getElementById("modelSpace");
+      const pv0Div = document.getElementById("pv0");
+      const pv1Div = document.getElementById("pv1");
+      const pv2Div = document.getElementById("pv2");
+      const pvaDiv = document.getElementById("pva");
+      const pv3Div = document.getElementById("pv3");
+      const pv4Div = document.getElementById("pv4");
+      const pv5Div = document.getElementById("pv5");
+      const postCadDiv = document.getElementById("postCad");
+
+      // Reset checklist contents
+      modelSpaceDiv.innerHTML = '';
+      pv0Div.innerHTML = '';
+      pv1Div.innerHTML = '';
+      pv2Div.innerHTML = '';
+      pvaDiv.innerHTML = '';
+      pv3Div.innerHTML = '';
+      pv4Div.innerHTML = '';
+      pv5Div.innerHTML = '';
+      postCadDiv.innerHTML = '';
+
+      // Display model space requirements
+      requirements["MODEL SPACE"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        modelSpaceDiv.appendChild(label);
+      });
+
+      // Display requirements for PV0, PV1, etc.
+      requirements["PV0"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pv0Div.appendChild(label);
+      });
+
+      requirements["PV1"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pv1Div.appendChild(label);
+      });
+
+      requirements["PV2"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pv2Div.appendChild(label);
+      });
+
+      requirements["PVA"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pvaDiv.appendChild(label);
+      });
+
+      requirements["PV3"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pv3Div.appendChild(label);
+      });
+
+      requirements["PV4"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pv4Div.appendChild(label);
+      });
+
+      requirements["PV5"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        pv5Div.appendChild(label);
+      });
+
+      requirements["POST CAD"].forEach(item => {
+        const label = document.createElement("label");
+        label.textContent = item;
+        postCadDiv.appendChild(label);
+      });
+    }
+
+    // Reset all dropdowns and checklist
+    function resetForm() {
+      document.querySelectorAll("select").forEach(select => {
+        select.selectedIndex = 0;
+      });
+      document.querySelectorAll(".checklist-container label").forEach(label => {
+        label.remove();
+      });
+    }
+
+    // Initialize by fetching data
+    fetchDropdownData();
+  </script>
+
+</body>
+</html>
