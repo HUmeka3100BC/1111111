@@ -152,14 +152,27 @@
         companyDropdown.appendChild(option);
       });
 
-      // Populate AHJ Dropdown
-      const ahjDropdown = document.getElementById('ahjDropdown');
-      data.ahjs.forEach(ahj => {
-        const option = document.createElement('option');
-        option.value = ahj;
-        option.textContent = ahj;
-        ahjDropdown.appendChild(option);
-      });
+// Show AHJ Notes when an AHJ is selected
+ahjDropdown.addEventListener('change', (event) => {
+  const selectedAHJ = event.target.value;
+  const ahjNotesContainerPV1 = document.createElement('li');
+  const ahjNotesContainerPV3 = document.createElement('li');
+  
+  const ahj = data.ahjs.find(a => a.name === selectedAHJ);
+  if (ahj && ahj.note) {
+    ahj.note.forEach(note => {
+      if (selectedAHJ === "Fresno") {
+        ahjNotesContainerPV1.textContent = note; // Add to PV1
+        ahjNotesContainerPV1.style.color = 'red'; // Set text color to red
+        document.querySelector('#checklist li:nth-child(83)').appendChild(ahjNotesContainerPV1); // Assuming PV1 AHJ notes is the 83rd item
+        
+        ahjNotesContainerPV3.textContent = note; // Add to PV3
+        ahjNotesContainerPV3.style.color = 'red'; // Set text color to red
+        document.querySelector('#checklist li:nth-child(24)').appendChild(ahjNotesContainerPV3); // Assuming PV3 AHJ notes is the 24th item
+      }
+    });
+  }
+});
 
       // Populate Utility Dropdown
       const utilityDropdown = document.getElementById('utilityDropdown');
