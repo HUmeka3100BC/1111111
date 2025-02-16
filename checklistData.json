@@ -40,7 +40,9 @@
   "ahjs": [
     "AHJ A",
     "AHJ B",
-    "Fresno"
+    {
+      "Fresno": "SHOW DIMENSION BETWEEN EQUIPMENT AND PROPERTY LINE (MUST BE AT LEAST 3')"
+    }
   ],
   "utilities": [
     "PG&E",
