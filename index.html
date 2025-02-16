@@ -152,6 +152,23 @@
         companyDropdown.appendChild(option);
       });
 
+      // Populate Utility Dropdown
+      const utilityDropdown = document.getElementById('utilityDropdown');
+      data.utilities.forEach(utility => {
+        const option = document.createElement('option');
+        option.value = utility;
+        option.textContent = utility;
+        utilityDropdown.appendChild(option);
+      });
+      // Populate AHJ Dropdown
+      const ahjDropdown = document.getElementById('ahjDropdown');
+      data.ahjs.forEach(ahj => {
+	 const option = document.createElement('option');
+ 	 option.value = ahj.name;
+ 	 option.textContent = ahj.name;
+  	 ahjDropdown.appendChild(option);
+      });
+	    
 // Show AHJ Notes when an AHJ is selected
 ahjDropdown.addEventListener('change', (event) => {
   const selectedAHJ = event.target.value;
@@ -173,16 +190,7 @@ ahjDropdown.addEventListener('change', (event) => {
     });
   }
 });
-
-      // Populate Utility Dropdown
-      const utilityDropdown = document.getElementById('utilityDropdown');
-      data.utilities.forEach(utility => {
-        const option = document.createElement('option');
-        option.value = utility;
-        option.textContent = utility;
-        utilityDropdown.appendChild(option);
-      });
-
+	    
       // Show Company Best Practices when a company is selected
       companyDropdown.addEventListener('change', (event) => {
         const selectedCompany = event.target.value;
