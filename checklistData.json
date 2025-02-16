@@ -38,8 +38,14 @@
     }
   ],
   "ahjs": [
-    "AHJ A",
-    "AHJ B",
+    {
+      "name": "AHJ A",
+      "note": []
+    },
+    {
+      "name": "AHJ B",
+      "note": []
+    },
     {
       "name": "Fresno",
       "note": [
