@@ -66,7 +66,7 @@
         </a></li>
         <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li> 
         <h2 class="text-xl font-medium mb-3">PV1:</h2>
-        <li><label><input type="checkbox" class="mr-2">UPDATE SITE NOTES</label></li> 
+        <li id="pv1Notes"><label><input type="checkbox" class="mr-2">UPDATE SITE NOTES</label></li> 
         <li><label><input type="checkbox" class="mr-2">BLOWUP VIEW</label></li>
         <li><label><input type="checkbox" class="mr-2">TURN OFF THE LAYERS THAT ARE NOT REQUIRED TO BE DISPLAYED IN THE BLOW-UP VIEW.</label></li>
         <li><label><input type="checkbox" class="mr-2">EQUIPMENT ICON CALLOUT (ENSURE THE MODEL AND PART NUMBER ARE SHOWN)</label></li>
@@ -101,7 +101,7 @@
         <li><label><input type="checkbox" class="mr-2">GROUNDING LABEL</label></li>
         <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
         <h2 class="text-xl font-medium mb-3">PV5</h2>
-        <li><label><input type="checkbox" class="mr-2">LABEL 10</label></li>
+        <li id="pv5Notes"><label><input type="checkbox" class="mr-2">LABEL 10</label></li>
         <li><label><input type="checkbox" class="mr-2">LABEL 13</label></li>
         <li><label><input type="checkbox" class="mr-2">LABEL 15</label></li>
         <li><label><input type="checkbox" class="mr-2">PLACARD ROTATION UTC</label></li>
@@ -149,10 +149,10 @@
           const ahj = data.ahjs.find(a => a.name === selectedAHJ);
           
           // Clear previous AHJ notes
-          const ahjNotesContainerPV1 = document.querySelector('#checklist li:nth-child(24)'); // Adjust this index as needed
-          const ahjNotesContainerPV5 = document.querySelector('#checklist li:nth-child(66)'); // Adjust this index as needed
-          ahjNotesContainerPV1.innerHTML = ''; // Clear previous notes for PV1
-          ahjNotesContainerPV5.innerHTML = ''; // Clear previous notes for PV5
+          const pv1NotesContainer = document.getElementById('pv1Notes');
+          const pv5NotesContainer = document.getElementById('pv5Notes');
+          pv1NotesContainer.innerHTML = '<label><input type="checkbox" class="mr-2">UPDATE SITE NOTES</label>'; // Reset to original
+          pv5NotesContainer.innerHTML = '<label><input type="checkbox" class="mr-2">LABEL 10</label>'; // Reset to original
 
           if (ahj && ahj.note) {
             ahj.note.forEach(note => {
@@ -161,13 +161,13 @@
                   const notePV1 = document.createElement('li');
                   notePV1.textContent = note; // Add to PV1
                   notePV1.style.color = 'red'; // Set text color to red
-                  ahjNotesContainerPV1.appendChild(notePV1); // Append to PV1 notes
+                  pv1NotesContainer.appendChild(notePV1); // Append to PV1 notes
                 }
                 if (note === "tae tae") {
                   const notePV5 = document.createElement('li');
                   notePV5.textContent = note; // Add to PV5
                   notePV5.style.color = 'red'; // Set text color to red
-                  ahjNotesContainerPV5.appendChild(notePV5); // Append to PV5 notes
+                  pv5NotesContainer.appendChild(notePV5); // Append to PV5 notes
                 }
               }
             });
