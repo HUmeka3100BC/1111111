@@ -41,7 +41,11 @@
     "AHJ A",
     "AHJ B",
     {
-      "Fresno": "SHOW DIMENSION BETWEEN EQUIPMENT AND PROPERTY LINE (MUST BE AT LEAST 3')"
+      "name": "Fresno",
+      "note": [
+        "3' dimension between equipment and property line",
+        "tae tae"
+      ]
     }
   ],
   "utilities": [
