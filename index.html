@@ -6,209 +6,140 @@
   <title>Checklist</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth.js"></script>
+
+  <script>
+    // Firebase Config (Replace with your actual Firebase credentials)
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Allowed users (Only these emails can access)
+    const allowedUsers = ["umekahayato@gmail.com", "anotheruser@gmail.com"];
+
+    // Handle Login
+    function googleSignIn() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const userEmail = result.user.email;
+          if (allowedUsers.includes(userEmail)) {
+            document.getElementById("auth-section").classList.add("hidden");
+            document.getElementById("checklist-section").classList.remove("hidden");
+          } else {
+            alert("Access Denied!");
+            auth.signOut();
+          }
+        })
+        .catch((error) => console.error("Login failed:", error));
+    }
+
+    // Handle Logout
+    function signOut() {
+      auth.signOut().then(() => {
+        document.getElementById("auth-section").classList.remove("hidden");
+        document.getElementById("checklist-section").classList.add("hidden");
+      });
+    }
+  </script>
 </head>
 
 <body class="bg-black p-6 text-white">
-  <div class="max-w-2xl mx-auto bg-gray-800 rounded-lg shadow-lg p-6">
-    <h1 class="text-2xl font-bold mb-4">Checklist</h1>
-
-    <!-- Dropdown Menus -->
-    <div class="flex space-x-4 mb-4">
-      <div class="w-1/3">
-        <label class="block text-gray-300 font-medium mb-2">Select Company:</label>
-        <select id="companyDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-green-400">
-          <option>Select Company</option>
-        </select>
-      </div>
-      <div class="w-1/3">
-        <label class="block text-gray-300 font-medium mb-2">Select AHJ:</label>
-        <select id="ahjDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-blue-400">
-          <option>Select AHJ</option>
-        </select>
-      </div>
-      <div class="w-1/3">
-        <label class="block text-gray-300 font-medium mb-2">Select Utility:</label>
-        <select id="utilityDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-red-400">
-          <option>Select Utility</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Company Best Practices Section -->
-    <div id="bestPracticesContainer" class="hidden mb-6">
-      <h2 class="text-xl font-medium mb-3">COMPANY BEST PRACTICES:</h2>
-      <ul id="bestPracticesList" class="space-y-2"></ul>
-    </div>
-
-    <!-- Checklist Section -->
-    <div class="mb-6">
-      <h2 class="text-xl font-medium mb-3">MODEL SPACE:</h2>
-      <ul id="checklist" class="space-y-2">
-        <li><label><input type="checkbox" class="mr-2">FILL OUT DWG PROPS UTC</label></li>
-        <li><label><input type="checkbox" class="mr-2">AZIMUTH UTC</label></li>
-        <li><label><input type="checkbox" class="mr-2">DRAW HOUSE</label></li>
-        <li><label><input type="checkbox" class="mr-2">PROPERTY LINE</label></li>
-        <li><label><input type="checkbox" class="mr-2">FENCE</label></li>
-        <li><label><input type="checkbox" class="mr-2">DRIVEWAY</label></li>
-        <li><label><input type="checkbox" class="mr-2">PROPERTY DIMENSION</label></li>
-        <li><label><input type="checkbox" class="mr-2">FIRE SETBACKS</label></li>
-        <li><label><input type="checkbox" class="mr-2">RAFTERS</label></li>
-        <li><label><input type="checkbox" class="mr-2">MODULES</label></li>
-        <li><label><input type="checkbox" class="mr-2">ATTACHMENTS</label></li>
-        <li><label><input type="checkbox" class="mr-2">USE COUNT ATTACHMENTS UTC</label></li>
-        <li><label><input type="checkbox" class="mr-2">EQUIPMENT ICONS</label></li>
-        <li><label><input type="checkbox" class="mr-2">CONDUIT</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <h2 class="text-xl font-medium mb-3">PV0:</h2>
-        <li><label><input type="checkbox" class="mr-2">SELECT CORRECT PROJECT DATA DROPDOWN UTC</label></li>
-        <li><label><input type="checkbox" class="mr-2">FOR BATTERY JOBS EDIT THE ROW BELOW THE BATTERY NAME. DON'T LEAVE BLANK<a href="https://drive.google.com/file/d/1HaXtffQeKDW8jZxg19Um8syvUHzzeKX9/view?usp=drive_link" target="_blank" class="text-blue-500 ml-2">
-            <i class="fas fa-info-circle"></i> 
-        </a></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li> 
-        <h2 class="text-xl font-medium mb-3">PV1:</h2>
-        <li id="pv1Notes"><label><input type="checkbox" class="mr-2">UPDATE SITE NOTES</label></li> 
-        <li><label><input type="checkbox" class="mr-2">BLOWUP VIEW</label></li>
-        <li><label><input type="checkbox" class="mr-2">TURN OFF THE LAYERS THAT ARE NOT REQUIRED TO BE DISPLAYED IN THE BLOW-UP VIEW.</label></li>
-        <li><label><input type="checkbox" class="mr-2">EQUIPMENT ICON CALLOUT (ENSURE THE MODEL AND PART NUMBER ARE SHOWN)</label></li>
-        <li><label><input type="checkbox" class="mr-2">MODULE CALLOUT</label></li>
-        <li><label><input type="checkbox" class="mr-2">DRIVEWAY LABEL</label></li>
-        <li><label><input type="checkbox" class="mr-2">PROPERTY LINE LABEL</label></li>
-        <li><label><input type="checkbox" class="mr-2">STREET NAME LABEL</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <h2 class="text-xl font-medium mb-3">PV2</h2>
-        <li><label><input type="checkbox" class="mr-2">LEGEND</label></li>
-        <li><label><input type="checkbox" class="mr-2">ROOF CALLOUT</label></li>
-        <li><label><input type="checkbox" class="mr-2">MICROINVERTER/OPTIMIZER/MCI CALLOUT</label></li>
-        <li><label><input type="checkbox" class="mr-2">FIRE ACCESS POINT CALLOUT</label></li>
-        <li><label><input type="checkbox" class="mr-2">RAILS CALLOUT</label></li>
-        <li><label><input type="checkbox" class="mr-2">ATTACHMENT CALLOUT</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <h2 class="text-xl font-medium mb-3">PVA</h2>
-        <li><label><input type="checkbox" class="mr-2">ADD NO DWELLING WINDOWS AND DOORS NOTE IF NEEDED</label>
-        <a href="https://drive.google.com/file/d/1lFHzU82W5TK-HyH9Q5HI7y0mJ0UAIP5r/view?usp=drive_link" target="_blank" class="text-blue-500 ml-2">
-          <i class="fas fa-info-circle"></i>
-        </a></li>
-        <h2 class="text-xl font-medium mb-3">PV3</h2>
-        <li><label><input type="checkbox" class="mr-2">ATTACH THE CORRECT ATTACHMENT DWG</label></li>
-        <li><label><input type="checkbox" class="mr-2">UPDATE THE CALLOUTS ON THE DWG FILE IF NEEDED (EX.ROOF TYPE CALLOUT)</label></li>
-        <li><label><input type="checkbox" class="mr-2">IS THE SCREW LENGTH CORRECT?</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <h2 class="text-xl font-medium mb-3">PV4</h2>
-        <li><label><input type="checkbox" class="mr-2">WIRE TABLE</label></li>
-        <li><label><input type="checkbox" class="mr-2">ENSURE AMBIENT TEMP IS CORRECT</label></li>
-        <li><label><input type="checkbox" class="mr-2">REMOVE BREAKER SIZE IN THE OCPD CALCS IF NOT IN THE PLANSET</label></li>
-        <li><label><input type="checkbox" class="mr-2">CHANGE THE “OUTPUT” TO “BACKFEED”</label></li>
-        <li><label><input type="checkbox" class="mr-2">GROUNDING LABEL</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <h2 class="text-xl font-medium mb-3">PV5</h2>
-        <li id="pv5Notes"><label><input type="checkbox" class="mr-2">LABEL 10</label></li>
-        <li><label><input type="checkbox" class="mr-2">LABEL 13</label></li>
-        <li><label><input type="checkbox" class="mr-2">LABEL 15</label></li>
-        <li><label><input type="checkbox" class="mr-2">PLACARD ROTATION UTC</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <h2 class="text-xl font-medium mb-3">POST CAD</h2>
-        <li><label><input type="checkbox" class="mr-2">UPDATE SHEET NAME</label></li>
-        <li><label><input type="checkbox" class="mr-2">UPDATE SHEET INDEX</label></li>
-        <li><label><input type="checkbox" class="mr-2">AHJ NOTES</label></li>
-        <li><label><input type="checkbox" class="mr-2">SPEC SHEETS</label></li>
-      </ul>
-    </div>
-
-    <!-- Reset Button -->
-    <button id="resetButton" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
-      Reset
+  
+  <!-- Login Section -->
+  <div id="auth-section" class="flex flex-col items-center justify-center h-screen">
+    <h1 class="text-2xl font-bold mb-4">Restricted Access</h1>
+    <button onclick="googleSignIn()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+      Sign in with Google
     </button>
   </div>
 
-  <script>
-    // Load JSON data
-    fetch('checklistData.json')
-      .then(response => response.json())
-      .then(data => {
-        // Populate Company Dropdown
-        const companyDropdown = document.getElementById('companyDropdown');
-        data.companies.forEach(company => {
-          const option = document.createElement('option');
-          option.value = company.name;
-          option.textContent = company.name;
-          companyDropdown.appendChild(option);
-        });
+  <!-- Checklist Section (Hidden until login) -->
+  <div id="checklist-section" class="hidden">
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+      <h1 class="text-2xl font-bold mb-4 text-left">Checklist</h1>
 
-        // Populate AHJ Dropdown
-        const ahjDropdown = document.getElementById('ahjDropdown');
-        data.ahjs.forEach(ahj => {
-          const option = document.createElement('option');
-          option.value = ahj.name;
-          option.textContent = ahj.name;
-          ahjDropdown.appendChild(option);
-        });
+      <!-- Logout Button -->
+      <button onclick="signOut()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 mb-4">
+        Logout
+      </button>
 
-        // Show AHJ Notes when an AHJ is selected
-        ahjDropdown.addEventListener('change', (event) => {
-          const selectedAHJ = event.target.value;
-          const ahj = data.ahjs.find(a => a.name === selectedAHJ);
-          
-          // Clear previous AHJ notes
-          const pv1NotesContainer = document.getElementById('pv1Notes');
-          const pv5NotesContainer = document.getElementById('pv5Notes');
-          pv1NotesContainer.innerHTML = '<label><input type="checkbox" class="mr-2">UPDATE SITE NOTES</label>'; // Reset to original
-          pv5NotesContainer.innerHTML = '<label><input type="checkbox" class="mr-2">LABEL 10</label>'; // Reset to original
+      <!-- Dropdown Menus -->
+      <div class="flex space-x-4 mb-6">
+        <div class="w-1/4">
+          <label class="block text-gray-300 font-medium mb-2 text-sm">Select Company:</label>
+          <select id="companyDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-green-400">
+            <option>Select Company</option>
+            <option>SAMEDAY</option>
+            <option>NORTH VALLEY</option>
+            <option>CITADEL</option>
+            <option>THRIVE</option>
+          </select>
+        </div>
+        <div class="w-1/4">
+          <label class="block text-gray-300 font-medium mb-2 text-sm">Select AHJ:</label>
+          <select id="ahjDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-blue-400">
+            <option>Select AHJ</option>
+            <option>AHJ A</option>
+            <option>ROCKLIN</option>
+            <option>Fresno</option>
+          </select>
+        </div>
+        <div class="w-1/4">
+          <label class="block text-gray-300 font-medium mb-2 text-sm">Select Utility:</label>
+          <select id="utilityDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-red-400">
+            <option>Select Utility</option>
+            <option>PG&E</option>
+            <option>Utility B</option>
+          </select>
+        </div>
+        <div class="w-1/4">
+          <label class="block text-gray-300 font-medium mb-2 text-sm">Select Battery:</label>
+          <select id="BatteryDropdown" class="w-full p-2 border rounded-md bg-gray-700 text-yellow-400">
+            <option>Select Battery</option>
+            <option>POWERWALL 3</option>
+            <option>ENPHASE</option>
+            <option>SOLAREDGE</option>
+          </select>
+        </div>
+      </div>
 
-          if (ahj && ahj.note) {
-            ahj.note.forEach(note => {
-              if (selectedAHJ === "Fresno") {
-                if (note === "3' dimension between equipment and property line") {
-                  const notePV1 = document.createElement('li');
-                  notePV1.textContent = note; // Add to PV1
-                  notePV1.style.color = 'red'; // Set text color to red
-                  pv1NotesContainer.appendChild(notePV1); // Append to PV1 notes
-                }
-                if (note === "tae tae") {
-                  const notePV5 = document.createElement('li');
-                  notePV5.textContent = note; // Add to PV5
-                  notePV5.style.color = 'red'; // Set text color to red
-                  pv5NotesContainer.appendChild(notePV5); // Append to PV5 notes
-                }
-              }
-            });
-          }
-        });
+      <!-- Model Space Section -->
+      <div class="mb-6">
+        <h2 class="text-xl font-medium mb-3 text-left">MODEL SPACE:</h2>
+        <ul id="checklist" class="space-y-2 text-left text-sm">
+          <li><label><input type="checkbox" class="mr-2">FILL OUT DWG PROPS UTC</label></li>
+          <li><label><input type="checkbox" class="mr-2">AZIMUTH UTC</label></li>
+          <li><label><input type="checkbox" class="mr-2">DRAW THE HOUSE AND ANY DETACHED STRUCTURES</label></li>
+          <li><label><input type="checkbox" class="mr-2">PROPERTY LINE</label></li>
+        </ul>
+      </div>
 
-        // Populate Utility Dropdown
-        const utilityDropdown = document.getElementById('utilityDropdown');
-        data.utilities.forEach(utility => {
-          const option = document.createElement('option');
-          option.value = utility;
-          option.textContent = utility;
-          utilityDropdown.appendChild(option);
-        });
+      <!-- Reset Button -->
+      <button id="resetButton" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+        Reset
+      </button>
+    </div>
+  </div>
 
-        // Show Company Best Practices when a company is selected
-        companyDropdown.addEventListener('change', (event) => {
-          const selectedCompany = event.target.value;
-          const bestPracticesContainer = document.getElementById('bestPracticesContainer');
-          const bestPracticesList = document.getElementById('bestPracticesList');
-          bestPracticesList.innerHTML = ''; // Clear previous practices
+<script>
+   // Handle Reset Button
+   document.getElementById('resetButton').addEventListener('click', () => {
+       document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
+   });
+</script>
 
-          const company = data.companies.find(c => c.name === selectedCompany);
-          if (company) {
-            company.bestPractices.forEach(practice => {
-              const li = document.createElement('li');
-              li.textContent = practice;
-              bestPracticesList.appendChild(li);
-            });
-            bestPracticesContainer.classList.remove('hidden');
-          } else {
-            bestPracticesContainer.classList.add('hidden');
-          }
-        });
-
-        // Handle Reset Button
-        document.getElementById('resetButton').addEventListener('click', () => {
-          document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
-        });
-      })
-      .catch(error => console.error('Error loading JSON:', error));
-  </script>
 </body>
 </html>
