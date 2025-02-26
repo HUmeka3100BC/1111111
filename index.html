@@ -1,0 +1,17 @@
+<select id="state" onchange="updateDropdown('AHJ'); updateDropdown('Utility'); updateDropdown('Battery');">
+  <option value="">Select State</option>
+</select>
+
+<select id="AHJ" onchange="showSentence('AHJ')">
+  <option value="">Select AHJ</option>
+</select>
+
+<select id="Utility" onchange="showSentence('Utility')">
+  <option value="">Select Utility</option>
+</select>
+
+<select id="Battery" onchange="showSentence('Battery')">
+  <option value="">Select Battery</option>
+</select>
+
+<div id="sentenceDisplay"></div>

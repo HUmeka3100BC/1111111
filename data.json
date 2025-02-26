@@ -1,0 +1,21 @@
+{
+  "States": {
+    "California": {
+      "AHJ": ["Los Angeles", "San Diego"],
+      "Utility": ["PG&E", "SCE"],
+      "Battery": ["Tesla Powerwall", "Enphase IQ Battery"]
+    }
+  },
+  "Sentences": {
+    "PG&E": {
+      "PV5": "Show PG&E Note",
+      "Model Space": "Show AC Disconnect Near MSP"
+    },
+    "Tesla Powerwall": {
+      "PV2": "Battery should be within 3ft of inverter"
+    },
+    "Los Angeles": {
+      "PV0": "Follow AHJ setback rules"
+    }
+  }
+}
