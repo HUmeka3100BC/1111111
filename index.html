@@ -625,6 +625,14 @@
             } else if (type === "interconnection") {  
                 label.style.color = "#FFA500"; // Orange (bold for Adder)
                 label.style.fontWeight = "bold";
+            
+            if (sectionId !== "pv99-container") { 
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            noteItem.appendChild(checkbox);
+        
+
+                        
             }
 
                     noteItem.appendChild(checkbox);
