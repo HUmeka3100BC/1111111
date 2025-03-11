@@ -208,31 +208,36 @@
     </div>
 
         <div class="checkbox-container">
-            <label><input type="checkbox" id="citadel"> Citadel</label>
-            <label><input type="checkbox" id="northValley"> North Valley</label>
-            <label><input type="checkbox" id="sameday"> Sameday/label>
-            <label><input type="checkbox" id="thrive"> Thrive</label>
+            <label><input type="checkbox" id="existing"> Existing</label>
+            <label><input type="checkbox" id="groundMount">Ground Mount</label>
+            <label><input type="checkbox" id="flatRoof"> Flat Roof</label>
+            <label><input type="checkbox" id="mpu"> MPU</label>
         </div>
         
         <h3>Company Best Practices:</h3>
         <div class="checklist-container">
         <label class="checklist-item">
-        <div id="pv00-container" class="note-container"></div>
+        <ul id="pv99-container" class="note-container"></ul>
 
         </div>
 
-        <h3>PV01 - Cover Page:<a href="https://drive.google.com/file/d/1-nh65UGJ_FIv18WPq9aQEHmhPwhgW37e/view?usp=drive_link" target="_blank" class="help-icon" title="More Info">ℹ</a></h3>
+        <h3>Model Space:</a></h3>
         <div class="checklist-container">
             <label class="checklist-item">
-                <input type="checkbox" class="mr-2">Applicable governing codes are correct?
+                
+                <input type="checkbox" class="mr-2">FILL OUT DWG PROPS UTC
             </label>
-            <div id="pv011-container" class="note-container"></div>
+            <div id="pv001-container" class="note-container"></div>
+              <label class="checklist-item">
+                  
+                <input type="checkbox" class="mr-2">AZIMUTH UTC
+            </label>
+                <div id="pv002-container" class="note-container"></div>
+            
             <label class="checklist-item">
-                <input type="checkbox" class="mr-2">R-3 Occupancy selected? (for single family residential homes or duplex)
+                <input type="checkbox" class="mr-2">DRAW THE HOUSE AND ANY DETACHED STRUCTURES
             </label>
-            <label class="checklist-item">
-                <input type="checkbox" class="mr-2">Aerial and street photos present?
-            </label>
+                <div id="pv003-container" class="note-container"></div>
             <label class="checklist-item">
             <input type="checkbox" class="mr-2">Correct structural criteria shown?
             </label>
@@ -612,7 +617,7 @@
             } else if (type === "battery") {  
                 label.style.color = "#d32faf"; // Magenta
             } else if (type === "adder") {  
-                label.style.color = "#FFA500"; // Orange (bold for Adder)
+                label.style.color = "#8b6c5c"; // Orange (bold for Adder)
                 label.style.fontWeight = "bold";
             } else if (type === "state") {  
                 label.style.color = "#8BC34A"; // **Gold for State Notes**
