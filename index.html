@@ -610,30 +610,29 @@
                     label.textContent = labelText;
 
                     // 🎨 Color the Notes Based on Type
-                    if (type === "ahj") {
-                label.style.color = "#3A5DA8"; // Blue
-            } else if (type === "utility") {
-                label.style.color = "#D32F2F"; // Red
-            } else if (type === "battery") {  
-                label.style.color = "#d32faf"; // Magenta
-            } else if (type === "adder") {  
-                label.style.color = "#8b6c5c"; // Orange (bold for Adder)
-                label.style.fontWeight = "bold";
-            } else if (type === "state") {  
-                label.style.color = "#8BC34A"; // **Gold for State Notes**
-                label.style.fontWeight = "bold";
-            } else if (type === "interconnection") {  
-                label.style.color = "#FFA500"; // Orange (bold for Adder)
-                label.style.fontWeight = "bold";
-            
-            if (sectionId !== "pv99-container") { 
-            let checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            noteItem.appendChild(checkbox);
-        
+    if (type === "ahj") {
+    label.style.color = "#3A5DA8"; // Blue
+} else if (type === "utility") {
+    label.style.color = "#D32F2F"; // Red
+} else if (type === "battery") {  
+    label.style.color = "#d32faf"; // Magenta
+} else if (type === "adder") {  
+    label.style.color = "#8b6c5c"; // Orange (bold for Adder)
+    label.style.fontWeight = "bold";
+} else if (type === "state") {  
+    label.style.color = "#8BC34A"; // Gold for State Notes
+    label.style.fontWeight = "bold";
+} else if (type === "interconnection") {  
+    label.style.color = "#FFA500"; // Orange for Interconnection
+    label.style.fontWeight = "bold";
+}  
 
-                        
-            }
+// ✅ Only add checkboxes if it's NOT "Company Best Practices"
+if (sectionId !== "pv99-container") { 
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    noteItem.appendChild(checkbox);
+}
 
                     noteItem.appendChild(checkbox);
                     noteItem.appendChild(label);
