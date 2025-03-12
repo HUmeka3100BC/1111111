@@ -5,182 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dropdown from Google Sheets</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-    background: url('https://raw.githubusercontent.com/HUmeka3100BC/yyyy/refs/heads/main/wallpapersden.com_skiing-in-space-pixel-art_1920x1200.jpg') repeat fixed center/cover;
-    color: #ffffff;
-    margin: 0;
-    padding: 20px;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        h3 {
-            font-size: 20px;
-             margin-top: 20px;
-            margin-bottom: 10px;
-            display: flex;
-             align-items: center;
-            gap: 5px;
-        }
-
-        .container {
-            background: rgba(30, 30, 30, 0.8); /* Semi-transparent */
-    border-radius: 8px;
-    padding: 20px;
-    margin: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .dropdown-container {
-            display: flex;
-              flex-wrap: wrap; /* ✅ Ensures proper alignment */
-                gap: 15px; /* Space between dropdowns */
-                flex-wrap: nowrap; 
- 
-             align-items: center;
-        }
-
-        label {
-            display: flex;
-            align-items: center;
-            color:	#888888; /* Ensure label text is visible in dark mode */
-            font-weight: bold;
-        }
-
-        select {
-            background: #2E7D32; 
-            color: #E0E0E0;
-            border: 1px solid #66BB6A;
-            border-radius: 5px;
-            padding: 10px;
-            width: 200px; /* Fixed width for all dropdowns */
-            box-sizing: border-box; /* Ensures padding is included in the width */
-        }
-
-        select:hover {
-            background: #2E7D32; /* Keep the same color */
-            border: 1px solid #66BB6A; /* Keep border same */
-            outline: none; /* Remove outline glow */
-        }
-
-        #ahj {
-            background: #3A5DA8; 
-            color: white;
-            border: 1px solid #5a9bf6;
-        }
-
-        #utility {
-            background: #D32F2F;  
-            color: white;
-            border: 1px solid #ff6666;
-        }
-
-        #battery {
-            background: #d32faf;  
-            color: white;
-            border: 1px solid #d32faf;
-        }
-
-
-    
-
-#interconnection {
-    background: #FFA500; /* Orange for Interconnection */
-    color: white;
-    border: 1px solid #FFA500;
-}
-
-        .checkbox-container {
-            display: flex;
-            gap: 15px; 
-            margin-top: 10px;
-        }
-
-        .checkbox-container label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-
-        .checkbox-container input[type="checkbox"] {
-            accent-color: #3A5DA8; /* Custom checkbox color */
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .note-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-
-        .help-icon {
-    background-color: #333333 !important; /* Dark gray background */
-    color: #ffffff !important; /* White text */
-    border-radius: 50%; /* Circular shape */
-    width: 20px;
-    height: 20px;       
-    font-size: 14px;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    margin-left: 5px;
-    vertical-align: middle;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.help-icon:hover {
-    background-color: #555555 !important; /* Slightly lighter gray on hover */
-}
-        
-
-
-        .checklist-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px; /* Adjust as needed */
-}
-
-#resetBtn {
-    background: #2A2A2A; /* Dark gray background to match theme */
-    border: 1px solid #444; /* Subtle border */
-    color: #E0E0E0; /* Light text for contrast */
-    font-size: 16px;
-    cursor: pointer;
-    padding: 6px 8px;
-    border-radius: 50%; /* Circular button */
-    margin-left: 10px; /* Space from NYEKLIST */
-    transition: background 0.3s, transform 0.2s;
-}
-
-#resetBtn:hover {
-    background: #3A5DA8; /* Match AHJ's blue theme */
-    transform: rotate(180deg); /* Rotate animation on hover */
-}
-
-        
+        /* Your existing CSS styles */
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h2>NYEKLIST<button id="resetBtn" title="Reset checkboxes">🔄</button>
-
-        </h2>    
-            
+        <h2>NYEKLIST<button id="resetBtn" title="Reset checkboxes">🔄</button></h2>
         
         <div class="dropdown-container">
+            <label for="company">Company:</label>
+            <select id="company" onchange="displayCompanyNotes()">
+                <option value="">Select Company</option>
+            </select>
+
             <label for="state">State:</label>
             <select id="state" onchange="updateAHJAndUtility()">
                 <option value="">Select State</option>
@@ -201,168 +38,35 @@
                 <option value="">Select Battery</option>
             </select>
 
-        <label for="interconnection">Interconnection:</label> <!-- 🔹 Moved Inside -->
-        <select id="interconnection" onchange="displayNotes()">
-            <option value="">Select Interconnection</option>
-        </select>
+            <label for="interconnection">Interconnection:</label>
+            <select id="interconnection" onchange="displayNotes()">
+                <option value="">Select Interconnection</option>
+            </select>
+        </div>
+
+        <!-- Your existing checkbox-container and checklist-container -->
     </div>
 
-        <div class="checkbox-container">
-            <label><input type="checkbox" id="existing"> Existing</label>
-            <label><input type="checkbox" id="groundMount">Ground Mount</label>
-            <label><input type="checkbox" id="flatRoof"> Flat Roof</label>
-            <label><input type="checkbox" id="mpu"> MPU</label>
-        </div>
-        
-<h3>Company Best Practices:</h3>
-<div class="checklist-container">
-    <div id="pv99-container" class="note-container"></div>
-</div>
-
-        </div>
-
-        <h3>Model Space:</a></h3>
-        <div class="checklist-container">
-            <label class="checklist-item">
-                
-                <input type="checkbox" class="mr-2">FILL OUT DWG PROPS UTC
-            </label>
-            <div id="pv001-container" class="note-container"></div>
-              <label class="checklist-item">
-                  
-                <input type="checkbox" class="mr-2">AZIMUTH UTC
-            </label>
-                <div id="pv002-container" class="note-container"></div>
-            
-            <label class="checklist-item">
-                <input type="checkbox" class="mr-2">DRAW THE HOUSE AND ANY DETACHED STRUCTURES
-            </label>
-                <div id="pv003-container" class="note-container"></div>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">Correct structural criteria shown?
-            </label>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">AHJ, Utility, APN, and meter number shown
-            </label>
-            <div id="pv01-container" class="note-container"></div>
-        </div>
-        
-        <h3>PV02 - Site Plan:<a href="https://drive.google.com/file/d/1NX5dtdtq4XWXc5f_FSdd2I3YggxnoW2L/view?usp=sharing" target="_blank" class="help-icon" title="More Info">ℹ</a></h3>
-        <div class="checklist-container">
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">Select the correct number of mounting planes in the "Array Details" table?
-            </label>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">Drag and drop the MP labels next to their corresponding mounting plane 
-            </label>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">All azimuths and pitches are correct and compass is oriented correctly
-            </label>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">Manually counted number of modules on roof?
-            </label>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">Property lines dimensioned?
-            </label>
-            <label class="checklist-item">
-            <input type="checkbox" class="mr-2">Street inserted and in correct location?
-            </label>
-
-        <div id="pv02-container" class="note-container"></div>
-        
-        <h3>PV03 - Roof Plan:</h3>
-        <div class="checklist-container">
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Viewport Zoomed in on home?
-        </label>
-        <label class="checklist-item" style="display: flex; align-items: center; margin-bottom: 1;">
-            <input type="checkbox" class="mr-2">Fire setbacks dimensioned according to AHJ/Company requirements?
-        </label>
-        <ul style="margin-left: 20px; color: #888888; padding: 0; list-style-position: inside; margin-top: 0; margin-bottom: 0;">
-            <li style="margin-bottom: 8px;"><strong>Standard Fire setback dimension</strong></li>
-            <ul style="margin-left: 30px; padding: 0;">
-                <li style="margin-bottom: 8px;"><strong>Ridges/Edges(3')</strong></li>
-                <li style="margin-bottom: 8px;"><strong>Hips/Valley (18")</strong></li>
-            </ul>
-        </ul>
-
-        <label class="checklist-item" style="display: flex; align-items: center; margin-top: 0;">
-                <input type="checkbox" class="mr-2">Attachment, Mid/End Clamp, and splice quantities are correct?
-                </label>
-        </ul>
-        <div id="pv03-container" class="note-container"></div>
-        
-        <h3>PV04 - Mounting Detail:</h3>
-        <div class="checklist-container">
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Rail and attachment manufacturer/model matches the mounting detail and customer request? 
-        </label>
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Rafter size and spacing matches site photos? (Or notes if provided there) 
-        </label>
-        <div id="pv04-container" class="note-container"></div>
-        
-        <h3>PV05 - Line Diagram - Mounting Detail:<a href="https://drive.google.com/file/d/1x08zR_mVpJfmzsn4iQCKN8_w5j07dEv8/view?usp=drive_link" target="_blank" class="help-icon" title="More Info">ℹ</a></h3>
-        <div class="checklist-container">
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Selected correct inverter/number of string and modules per string and up to total system count?
-        </label>
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Interconnection is code compliant/matches customer's notes? 
-        </label>
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Available fuses <a href="https://drive.google.com/file/d/18wzGIHFsoBQ9G4YYhRR3gKdt1SvDSkYJ/view?usp=drive_link" target="_blank" class="help-icon" title="More Info">ℹ</a></h3>
-        </label>            
-        <div id="pv05-container" class="note-container"></div>
-        
-        <h3>PV06 - Electrical Calcs:</h3>
-        <div class="checklist-container">
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Number of wire tags in the "Conduit & Conductor Schedule" table matches the number of wire tags on the line diagram?
-        </label>
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Verify all of the tables are populated and do not contain blank values
-        </label>
-        <div id="pv06-container" class="note-container"></div>
-        
-        <h3>PV07 - Label:</h3>
-        <div class="checklist-container">
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Labels are displayed per NEC year/AHJ/utility
-        </label>
-        <div id="pv07-container" class="note-container"></div>
-        
-        <h3>PV08 - Placard:<a href="https://drive.google.com/file/d/1NX5dtdtq4XWXc5f_FSdd2I3YggxnoW2L/view?usp=sharing" target="_blank" class="help-icon" title="More Info">ℹ</a></h3>
-        <div class="checklist-container">
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">"Front of Home" label in correct location?
-        </label>
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">"PV array, MSP, inverter(s)/combiner box(es), and AC disconnect(s) leaders present?
-        </label>
-        <div id="pv08-container" class="note-container"></div>
-        
-        <h3>PV09:</h3>
-        <label class="checklist-item">
-        <input type="checkbox" class="mr-2">Ensure all photos show up clearly in the PDF
-        </label>
-        <div id="pv09-container" class="note-container"></div>
     <script>
-        const sheetUrl = "https://script.google.com/macros/s/AKfycbya-36I7lhT8jq5e5fl4Q8sVvwDrs-KtKkg6R6Idf3h_w6LG78pFTHUX9o2Wa0tTcOq/exec";
+        const sheetUrl = "https://script.google.com/macros/s/AKfycby_RPY0A6BOxPDGPlI71fV7fiytz5VHSAvTngRZqELhlslwmhkoISD5I4YDKNu7Yg4T/exec";
 
+
+        let companyData = [];
         let ahjData = [];
         let utilityData = [];
         let batteryData = [];
         let addersData = [];
-        let stateNotesData = []
-        let interconnectionData = []
+        let stateNotesData = [];
+        let interconnectionData = [];
+
+
         async function fetchData() {
             try {
                 console.log("Fetching data from Google Apps Script...");
                 const response = await fetch(sheetUrl);
 
                 if (!response.ok) {
-                    throw new Error(HTTP error! Status: ${response.status});
+                    throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
                 const data = await response.json();
@@ -374,21 +78,45 @@
                 addersData = data.addersData || [];
                 stateNotesData = data.stateNotes || [];
                 interconnectionData = data.interconnectionData || [];
+                companyData = data.companyData || [];
 
-                console.log("✅ Interconnection Data:", interconnectionData);
-
+                updateCompanyDropdown();
                 updateStateDropdown();
-                updateBatteryDropdown(); // ✅ Battery dropdown is populated separately
-                updateInterconnectionDropdown(); //
+                updateBatteryDropdown();
+                updateInterconnectionDropdown();
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         }
 
         fetchData();
-        console.log("Utility Data:", utilityData);
-        console.log("Battery Data:", batteryData);
-        console.log("Interconnection Data:", interconnectionData);
+
+        function updateCompanyDropdown() {
+            const companyDropdown = document.getElementById("company");
+            companyDropdown.innerHTML = '<option value="">Select Company</option>';
+
+            companyData.forEach(item => {
+                let option = document.createElement("option");
+                option.value = item.company;
+                option.textContent = item.company;
+                companyDropdown.appendChild(option);
+            });
+        }
+
+        function displayCompanyNotes() {
+            const selectedCompany = document.getElementById("company").value;
+            const companyNoteContainer = document.getElementById("pv00-container");
+            companyNoteContainer.innerHTML = "";
+
+            if (selectedCompany) {
+                const companyDataItem = companyData.find(item => item.company === selectedCompany);
+                if (companyDataItem && companyDataItem.companyNote) {
+                    companyDataItem.companyNote.split("&").forEach(note => {
+                        displayFormattedNote(note, "company");
+                    });
+                }
+            }
+        }
 
         function updateStateDropdown() {
             const stateDropdown = document.getElementById("state");
@@ -408,24 +136,23 @@
         }
 
         function updateInterconnectionDropdown() {
-    const interconnectionDropdown = document.getElementById("interconnection");
-    interconnectionDropdown.innerHTML = '<option value="">Select Interconnection</option>';
+            const interconnectionDropdown = document.getElementById("interconnection");
+            interconnectionDropdown.innerHTML = '<option value="">Select Interconnection</option>';
 
-    if (!interconnectionData || interconnectionData.length === 0) {
-        console.warn("No interconnection data available.");
-        return;
-    }
+            if (!interconnectionData || interconnectionData.length === 0) {
+                console.warn("No interconnection data available.");
+                return;
+            }
 
-    interconnectionData.forEach(item => {
-        console.log("Interconnection Item:", item); // 🟢 ADD THIS TO DEBUG
-        let option = document.createElement("option");
-        option.value = item.interconnection;
-        option.textContent = item.interconnection;
-        interconnectionDropdown.appendChild(option);
-    });
+            interconnectionData.forEach(item => {
+                let option = document.createElement("option");
+                option.value = item.interconnection;
+                option.textContent = item.interconnection;
+                interconnectionDropdown.appendChild(option);
+            });
 
-    console.log("Interconnection dropdown updated:", interconnectionDropdown.innerHTML);
-}
+            console.log("Interconnection dropdown updated:", interconnectionDropdown.innerHTML);
+        }
 
         function updateAHJAndUtility() {
             const selectedState = document.getElementById("state").value;
@@ -449,27 +176,26 @@
                 utilityDropdown.appendChild(option);
             });
 
-                // 🛑 Remove all previous notes before adding new state notes
-    document.querySelectorAll(".ahj-note, .utility-note, .battery-note, .adder-note, .state-note").forEach(note => {
-        note.remove();
-    });
-            displayStateNotes(selectedState); // ⭐ ADDED: Show state notes when a state is selected
-        
-        }
-        function displayStateNotes(selectedState) { // ⭐ ADDED: Function to show state notes
-        const stateNoteContainer = document.getElementById("pv00-container"); // Using PV00 for state notes
-        stateNoteContainer.innerHTML = ""; // Clear previous state notes
-
-        const stateNoteItem = stateNotesData.find(item => item.state === selectedState);
-
-        if (stateNoteItem && stateNoteItem.note) {
-            stateNoteItem.note.split("&").forEach(note => {
-                displayFormattedNote(note, "state"); // ⭐ ADDED: Call function to display notes
+            document.querySelectorAll(".ahj-note, .utility-note, .battery-note, .adder-note, .state-note").forEach(note => {
+                note.remove();
             });
-        }
-    }
 
-        // ✅ Battery Dropdown is Now Always Populated
+            displayStateNotes(selectedState);
+        }
+
+        function displayStateNotes(selectedState) {
+            const stateNoteContainer = document.getElementById("pv00-container");
+            stateNoteContainer.innerHTML = "";
+
+            const stateNoteItem = stateNotesData.find(item => item.state === selectedState);
+
+            if (stateNoteItem && stateNoteItem.note) {
+                stateNoteItem.note.split("&").forEach(note => {
+                    displayFormattedNote(note, "state");
+                });
+            }
+        }
+
         function updateBatteryDropdown() {
             const batteryDropdown = document.getElementById("battery");
             batteryDropdown.innerHTML = '<option value="">Select Battery</option>';
@@ -480,28 +206,7 @@
                 option.textContent = item.battery;
                 batteryDropdown.appendChild(option);
             });
-        }     
-
-        function updateInterconnectionDropdown() {
-    const interconnectionDropdown = document.getElementById("interconnection");
-    interconnectionDropdown.innerHTML = '<option value="">Select Interconnection</option>';
-
-    if (!interconnectionData || interconnectionData.length === 0) {
-        console.warn("No interconnection data available.");
-        return;
-    }
-
-    interconnectionData.forEach(item => {
-        let option = document.createElement("option");
-        option.value = item.interconnection;
-        option.textContent = item.interconnection;
-        interconnectionDropdown.appendChild(option);
-    });
-
-            console.log("✅ Interconnection dropdown updated:", interconnectionDropdown.innerHTML);
         }
-        
-
 
         function displayNotes() {
             const selectedAHJ = document.getElementById("ahj").value;
@@ -509,24 +214,13 @@
             const selectedBattery = document.getElementById("battery").value;
             const selectedInterconnection = document.getElementById("interconnection").value;
 
-            
-
-            // ✅ Get Selected Adders (Checkboxes)
             const selectedAdders = [];
             document.querySelectorAll(".checkbox-container input[type='checkbox']:checked").forEach(checkbox => {
-                selectedAdders.push(checkbox.parentElement.textContent.trim()); // Get label text
+                selectedAdders.push(checkbox.parentElement.textContent.trim());
             });
 
-            console.log("Selected AHJ:", selectedAHJ);
-            console.log("Selected Utility:", selectedUtility);
-            console.log("Selected Battery:", selectedBattery);
-            console.log("Selected Adders:", selectedAdders);
-            console.log("Selected Interconnection:", selectedInterconnection);
-
-            // ❌ Remove previous notes (but only the affected categories)
             document.querySelectorAll(".ahj-note, .utility-note, .battery-note, .adder-note, .interconnection-note").forEach(note => note.remove());
 
-            // ✅ Display AHJ Notes if AHJ is selected
             if (selectedAHJ) {
                 const ahjDataItem = ahjData.find(item => item.ahj === selectedAHJ);
                 if (ahjDataItem && ahjDataItem.ahjNote) {
@@ -536,7 +230,6 @@
                 }
             }
 
-            // ✅ Display Utility Notes if Utility is selected
             if (selectedUtility) {
                 const utilityDataItem = utilityData.find(item => item.utility === selectedUtility);
                 if (utilityDataItem && utilityDataItem.utilityNote) {
@@ -546,7 +239,6 @@
                 }
             }
 
-            // ✅ Display Battery Notes if Battery is selected
             if (selectedBattery) {
                 const batteryDataItem = batteryData.find(item => item.battery === selectedBattery);
                 if (batteryDataItem && batteryDataItem.batteryNote) {
@@ -556,7 +248,6 @@
                 }
             }
 
-            // ✅ Display utility
             if (selectedInterconnection) {
                 const interconnectionDataItem = interconnectionData.find(item => item.interconnection === selectedInterconnection);
                 if (interconnectionDataItem && interconnectionDataItem.interconnectionNote) {
@@ -566,17 +257,15 @@
                 }
             }
 
-            // ✅ Display Adder Notes (Immediately when checked)
             selectedAdders.forEach(adder => {
                 const adderDataItem = addersData.find(item => item.adder.trim().toLowerCase() === adder.toLowerCase());
 
                 if (adderDataItem && adderDataItem.adderNote) {
-                    console.log(Adding note for: ${adder} - ${adderDataItem.adderNote}); // ✅ Debugging Log
                     adderDataItem.adderNote.split("&").forEach(note => {
                         displayFormattedNote(note, "adder");
                     });
                 } else {
-                    console.warn(No matching data found for: ${adder}); // ❌ Debugging log
+                    console.warn(`No matching data found for: ${adder}`);
                 }
             });
         }
@@ -584,54 +273,54 @@
         function displayFormattedNote(note, type) {
             let trimmedNote = note.trim();
             let urlMatch = trimmedNote.match(/(https?:\/\/[^\s]+)/);
-            let categoryMatch = trimmedNote.match(/(PV\d+)/); // Match PV01, PV02, etc.
+            let categoryMatch = trimmedNote.match(/(PV\d+)/);
 
             if (categoryMatch) {
-                let sectionId = categoryMatch[0].toLowerCase() + "-container"; // Get PV section
+                let sectionId = categoryMatch[0].toLowerCase() + "-container";
                 let section = document.getElementById(sectionId);
 
                 if (section) {
-                    // ✅ Prevent duplicate notes
                     let existingNotes = Array.from(section.children).map(child => child.innerText.trim());
                     if (existingNotes.includes(trimmedNote)) {
-                        return;  // ❌ Skip duplicate
+                        return;
                     }
 
                     let noteItem = document.createElement("div");
-                    noteItem.className = note-item ${type}-note;  // 🏷 Add unique class per type
+                    noteItem.className = `note-item ${type}-note`;
 
                     let checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
 
-                    let labelText = trimmedNote.replace(/(PV\d+:)/, "").trim(); // Remove "PV01:", "PV02:", etc.
-                    labelText = labelText.replace(/(https?:\/\/[^\s]+)/, "").trim(); // Remove URLs
+                    let labelText = trimmedNote.replace(/(PV\d+:)/, "").trim();
+                    labelText = labelText.replace(/(https?:\/\/[^\s]+)/, "").trim();
 
                     let label = document.createElement("label");
                     label.textContent = labelText;
 
-                    // 🎨 Color the Notes Based on Type
                     if (type === "ahj") {
-                label.style.color = "#3A5DA8"; // Blue
-            } else if (type === "utility") {
-                label.style.color = "#D32F2F"; // Red
-            } else if (type === "battery") {  
-                label.style.color = "#d32faf"; // Magenta
-            } else if (type === "adder") {  
-                label.style.color = "#8b6c5c"; // Orange (bold for Adder)
-                label.style.fontWeight = "bold";
-            } else if (type === "state") {  
-                label.style.color = "#8BC34A"; // **Gold for State Notes**
-                label.style.fontWeight = "bold";
-            } else if (type === "interconnection") {  
-                label.style.color = "#FFA500"; // Orange (bold for Adder)
-                label.style.fontWeight = "bold";
-            }
+                        label.style.color = "#3A5DA8";
+                    } else if (type === "utility") {
+                        label.style.color = "#D32F2F";
+                    } else if (type === "battery") {
+                        label.style.color = "#d32faf";
+                    } else if (type === "adder") {
+                        label.style.color = "#FFA500";
+                        label.style.fontWeight = "bold";
+                    } else if (type === "state") {
+                        label.style.color = "#8BC34A";
+                        label.style.fontWeight = "bold";
+                    } else if (type === "interconnection") {
+                        label.style.color = "#FFA500";
+                        label.style.fontWeight = "bold";
+                    } else if (type === "company") {
+                        label.style.color = "#8BC34A";
+                        label.style.fontWeight = "bold";
+                    }
 
                     noteItem.appendChild(checkbox);
                     noteItem.appendChild(label);
                     section.appendChild(noteItem);
 
-                    // 🔗 Add Help Link if URL is Found
                     if (urlMatch) {
                         let helpLink = document.createElement("a");
                         helpLink.href = urlMatch[0];
@@ -648,113 +337,27 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelectorAll(".checkbox-container input[type='checkbox']").forEach(checkbox => {
-                checkbox.addEventListener("change", displayNotes); // ✅ Auto-run on checkbox click
+                checkbox.addEventListener("change", displayNotes);
             });
+
             document.getElementById("resetBtn").addEventListener("click", function() {
-    // ✅ Clear all checkboxes
-    document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
-        checkbox.checked = false;
-    });
+                document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
+                    checkbox.checked = false;
+                });
 
-    // ✅ Reset all dropdowns to default "Select" option
-    document.querySelectorAll("select").forEach(select => {
-        select.selectedIndex = 0;
-    });
+                document.querySelectorAll("select").forEach(select => {
+                    select.selectedIndex = 0;
+                });
 
-    // ✅ Remove dynamically generated notes, including state notes
-    document.querySelectorAll(".ahj-note, .utility-note, .battery-note, .adder-note, .state-note, .interconnection-note").forEach(note => {
-        note.remove();
-    });
+                document.querySelectorAll(".ahj-note, .utility-note, .battery-note, .adder-note, .state-note, .interconnection-note, .company-note").forEach(note => {
+                    note.remove();
+                });
 
-    console.log("✅ Reset completed: Checkboxes cleared, dropdowns reset, notes removed!");
-});
-
-
-
+                console.log("✅ Reset completed: Checkboxes cleared, dropdowns reset, notes removed!");
+            });
         });
 
-// Detect DevTools and Redirect
-(function() {
-    let devtoolsOpen = false;
-    const threshold = 160;
-
-    function checkDevTools() {
-        let widthThreshold = window.outerWidth - window.innerWidth > threshold;
-        let heightThreshold = window.outerHeight - window.innerHeight > threshold;
-
-        if (widthThreshold || heightThreshold) {
-            if (!devtoolsOpen) {
-                devtoolsOpen = true;
-                alert("Developer Tools Detected! Closing page.");
-                window.location.href = "about:blank";
-            }
-        } else {
-            devtoolsOpen = false;
-        }
-    }
-
-    window.addEventListener('resize', checkDevTools);
-    setInterval(checkDevTools, 1000);
-})();
-
-// Freeze Page if DevTools Opens
-(function() {
-    let element = new Image();
-    Object.defineProperty(element, 'id', {
-        get: function() {
-            setTimeout(() => {
-                alert("Developer Tools Detected! Please close it.");
-                document.body.innerHTML = "";
-            }, 500); // Adds delay to prevent false triggers
-        }
-    });
-    console.log('%c ', element);
-})();
-
-// Disable Debugging Only When DevTools is Opened
-setInterval(function() {
-    if (window.console && (console.profiles || console.debug)) {
-        console.clear();
-        console.log("Debugging is disabled! Close DevTools.");
-    }
-}, 1000);
-
-// Block F12, Ctrl + Shift + I, J, C, and Ctrl + U
-document.addEventListener("keydown", function(event) {
-    if (
-        event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && event.key === "I") || 
-        (event.ctrlKey && event.shiftKey && event.key === "J") || 
-        (event.ctrlKey && event.shiftKey && event.key === "C") || 
-        (event.ctrlKey && event.key === "U") || 
-        (event.keyCode === 123) || 
-        (event.ctrlKey && event.keyCode === 85)
-    ) {
-        event.preventDefault();
-        return false;
-    }
-});
-
-document.getElementById("resetBtn").addEventListener("click", function() {
-    // ✅ Clear all checkboxes
-    document.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
-        checkbox.checked = false;
-    });
-
-    // ✅ Reset all dropdowns to default "Select" option
-    document.querySelectorAll("select").forEach(select => {
-        select.selectedIndex = 0;
-    });
-
-    // ✅ Remove dynamically generated notes
-    document.querySelectorAll(".ahj-note, .utility-note, .battery-note, .adder-note").forEach(note => {
-        note.remove();
-    });
-
-    console.log("✅ Reset completed: Checkboxes cleared, dropdowns reset, notes removed!");
-});
-
+        // Your existing DevTools detection code
     </script>
-
 </body>
 </html>
